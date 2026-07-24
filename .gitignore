@@ -1,0 +1,47 @@
+# ===== 비밀 정보 (절대 커밋 금지) =====
+# API 키·비밀번호 등이 담기는 환경변수 파일
+.env
+.env.*
+# 예시용 템플릿은 공유해도 되므로 예외로 추적
+!.env.example
+
+# ===== 의존성 / 빌드 결과물 =====
+# npm install 로 받는 외부 패키지 (용량 큼, 재설치 가능)
+node_modules/
+# Vite 빌드 결과물
+dist/
+build/
+# Vercel CLI가 만드는 로컬 프로젝트 연결 폴더 (커밋 금지)
+.vercel/
+
+# ===== 로그 =====
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ===== 운영체제가 만드는 파일 =====
+# macOS
+.DS_Store
+# Windows
+Thumbs.db
+
+# ===== 삭제 대기 폴더 (직접 확인 후 삭제할 파일 보관) =====
+trash-can/
+
+# ===== 에디터 설정 =====
+.vscode/
+.idea/
+
+# ===== bkit / Claude Code 로컬 상태 =====
+# bkit 플러그인의 실행 상태(PDCA 상태·메모리 등, 로컬 전용)
+.bkit/
+# 개인 로컬 설정 (공유용 settings.json 은 추적)
+.claude/settings.local.json
+
+# ===== 기획·설계·점검 문서 =====
+# (사용자 결정에 따라 저장소에 함께 공개: PRD·DESIGN·PLAN·CLAUDE·CHECK·prd_lite·루트 로고)
+# 비밀 정보(.env 등)는 위에서 계속 제외됨.
+
+.vercel
+.env*

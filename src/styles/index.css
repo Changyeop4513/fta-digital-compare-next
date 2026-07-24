@@ -1,0 +1,378 @@
+/* FTA 디지털협정 조항 비교 서비스 — 공통 스타일 (개발 단위 11: 디자인 마감)
+   네이비 기반의 차분한 공공 문서 톤. 표(원문 비교) 가독성 우선, PC 넓은 화면 우선. (DESIGN.md) */
+
+:root {
+  --navy: #1a2a4a; /* 메인 남색 */
+  --navy-soft: #2b3d63;
+  --border: #d7dced;
+  --border-soft: #e6eaf3;
+  --page-bg: #eef1f6;
+  --card-bg: #ffffff;
+  --text: #1f2a44;
+  --muted: #5b667f;
+  --faint: #9aa2b6;
+  --highlight: #ffe872; /* 노란 형광펜 */
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Malgun Gothic", "맑은 고딕", "Segoe UI", system-ui, sans-serif;
+  background-color: var(--page-bg);
+  color: var(--text);
+  line-height: 1.5;
+}
+
+/* --- 헤더 ---
+   깊이감을 주는 남색 그라데이션(좌상단이 더 짙고 우하단이 살짝 밝음)으로 다듬어,
+   흰색 반전 로고와 빨강 불꽃이 또렷하게 드러나게 한다. 하단에는 얇은 강조선. */
+.app-header {
+  background: linear-gradient(135deg, #12203c 0%, #1e3358 100%);
+  color: #ffffff;
+  padding: 22px 32px;
+  border-bottom: 3px solid #2e4576;
+}
+
+.app-header-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+/* 로고 + 제목을 한 줄에 가로 배치 */
+.app-title-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+/* 재정경제부 로고 — 어두운 헤더용 반전(흰색) 로고라 별도 배경 없이 헤더 위에 바로 올린다.
+   (흰색 배경 칩 제거) */
+.app-logo {
+  height: 42px;
+  width: auto;
+  flex-shrink: 0;
+}
+
+.app-header h1 {
+  margin: 0;
+  font-size: 22px;
+  letter-spacing: -0.2px;
+}
+
+.app-subtitle {
+  margin: 6px 0 0;
+  font-size: 13px;
+  color: #c3ccdf;
+}
+
+/* --- 본문 (PC 넓은 화면 중앙 정렬) --- */
+.app-main {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 24px 32px 48px;
+}
+
+/* --- 공통 섹션 카드 (컨트롤 바 / 협정별 조항 유무) --- */
+.control-bar,
+.availability-bar {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 18px 22px;
+  margin-bottom: 18px;
+  box-shadow: 0 1px 2px rgba(26, 42, 74, 0.04);
+}
+
+/* 컨트롤 바(주제·협정·검색)를 스크롤 중에도 화면 상단에 고정한다.
+   긴 조항 원문을 아래로 읽어 내려가면서도, 맨 위로 돌아가지 않고 바로
+   검색·주제 전환·협정 변경을 할 수 있게 하기 위함. (본문 카드는 이 아래로 스크롤되어 지나간다) */
+.control-bar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  /* 아래 본문이 밑으로 지나갈 때 경계가 또렷하도록 그림자를 조금 강조 */
+  box-shadow: 0 4px 12px rgba(26, 42, 74, 0.1);
+}
+
+.control-label {
+  display: block;
+  font-size: 12px;
+  font-weight: bold;
+  color: var(--navy);
+  letter-spacing: 0.3px;
+  margin-bottom: 10px;
+}
+
+.control-hint {
+  font-weight: normal;
+  color: var(--faint);
+}
+
+/* --- 주제 선택 --- */
+.topic-radios {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+/* 라디오 라벨을 알약(pill) 버튼 모양으로 스타일링 — 외형은 기존 버튼과 동일하게 유지 */
+.topic-radio {
+  position: relative; /* 아래 투명 라디오(inset:0)의 기준점 */
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid #b7c0dc;
+  background-color: #ffffff;
+  color: var(--navy);
+  padding: 8px 18px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.12s ease;
+}
+
+.topic-radio:hover {
+  border-color: var(--navy);
+}
+
+.topic-radio.is-selected {
+  background-color: var(--navy);
+  color: #ffffff;
+  border-color: var(--navy);
+}
+
+/* 실제 라디오 동그라미는 숨기되(opacity:0), 알약 전체를 덮어 클릭 영역이 되게 한다.
+   → 알약 어디를 눌러도 라디오가 직접 선택되고, 키보드 포커스/화살표 이동도 그대로 동작(접근성). */
+.topic-radio-input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* 키보드로 포커스가 오면 라벨(알약)에 외곽선 표시 */
+.topic-radio:focus-within {
+  outline: 2px solid var(--navy);
+  outline-offset: 2px;
+}
+
+/* --- 협정 선택 --- */
+.agreement-selector {
+  margin-top: 18px;
+}
+
+.agreement-checkboxes {
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+.agreement-checkbox {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  color: var(--text);
+  cursor: pointer;
+}
+
+.agreement-checkbox.is-disabled {
+  color: var(--faint);
+  cursor: not-allowed;
+}
+
+/* --- 검색 --- */
+.search-bar {
+  margin-top: 18px;
+}
+
+.search-input {
+  display: block;
+  width: 100%;
+  max-width: 360px;
+  padding: 9px 12px;
+  border: 1px solid #b7c0dc;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: var(--navy);
+  box-shadow: 0 0 0 2px rgba(26, 42, 74, 0.12);
+}
+
+/* 검색어 하이라이트 — 노란 형광펜 느낌 */
+.highlight {
+  background-color: var(--highlight);
+  color: inherit;
+  padding: 0 1px;
+  border-radius: 2px;
+}
+
+/* --- 협정별 조항 유무 바 (기능 3) --- */
+.availability-badges {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.availability-badge {
+  font-size: 13px;
+  padding: 6px 12px;
+  border-radius: 16px;
+  border: 1px solid var(--border);
+}
+
+.availability-badge.is-available {
+  background-color: #e8edf9;
+  color: var(--navy);
+  border-color: #b7c0dc;
+}
+
+.availability-badge.is-unavailable {
+  background-color: #f1f2f5;
+  color: var(--faint);
+}
+
+/* --- 안내 문구 / 예외 --- */
+.notice {
+  color: var(--muted);
+  margin-bottom: 16px;
+}
+
+/* 협정 0개 선택 등 빈 상태 */
+.empty-state {
+  background-color: var(--card-bg);
+  border: 1px dashed #b7c0dc;
+  border-radius: 10px;
+  padding: 40px 24px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 15px;
+}
+
+/* --- 비교 뷰 (기능 1) --- */
+.comparison-view {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  overflow-x: auto; /* 칸이 많거나 넓으면 가로 스크롤 */
+  padding-bottom: 4px;
+}
+
+.agreement-column {
+  flex: 1 1 0;
+  min-width: 260px;
+  background-color: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 1px 2px rgba(26, 42, 74, 0.04);
+}
+
+/* 칸 머리 — 협정명, 네이비 */
+.agreement-column-header {
+  background-color: var(--navy);
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 15px;
+  padding: 12px 16px;
+}
+
+.agreement-column-body {
+  padding: 14px 16px;
+}
+
+/* 해당 협정이 그 주제 조항을 아예 안 가진 경우 (칸 안 표시, "번역 없음"과 구분) */
+.no-article {
+  color: var(--faint);
+  font-size: 14px;
+  margin: 0;
+  padding: 4px 0;
+}
+
+/* 조항 1건 카드 */
+.article-card {
+  border: 1px solid var(--border-soft);
+  border-radius: 8px;
+  padding: 14px;
+  margin-bottom: 12px;
+  background-color: #fbfcfe;
+}
+
+.article-card:last-child {
+  margin-bottom: 0;
+}
+
+.article-card-no {
+  font-weight: bold;
+  color: var(--navy);
+  font-size: 14px;
+}
+
+/* 데이터 기준 시점 라벨 */
+.article-card-baseline {
+  display: inline-block;
+  margin-top: 6px;
+  font-size: 11px;
+  color: var(--muted);
+  background-color: #eef1f8;
+  border: 1px solid #dbe1f0;
+  border-radius: 4px;
+  padding: 2px 8px;
+}
+
+/* 영문/한국어본 한 쌍 */
+.article-lang {
+  margin-top: 12px;
+}
+
+.article-lang-label {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: bold;
+  color: #ffffff;
+  background-color: var(--navy-soft);
+  border-radius: 3px;
+  padding: 1px 6px;
+}
+
+.article-lang-text {
+  margin: 4px 0 0;
+  font-size: 13px;
+  line-height: 1.65;
+  color: var(--text);
+  white-space: pre-wrap; /* 원문의 줄바꿈을 그대로 유지 */
+}
+
+/* 한국어본이 없을 때의 "번역 없음" */
+.article-lang-text.is-missing {
+  color: var(--faint);
+  font-style: italic;
+}
+
+/* 접힌 상태 — 앞 3줄만 보이고 나머지는 감춘다 */
+.article-lang-text.is-clamped {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* 더보기 / 접기 버튼 */
+.more-button {
+  margin-top: 10px;
+  border: none;
+  background: none;
+  color: var(--navy-soft);
+  font-size: 13px;
+  cursor: pointer;
+  padding: 0;
+  text-decoration: underline;
+}
