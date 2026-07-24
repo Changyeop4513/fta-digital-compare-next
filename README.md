@@ -4,12 +4,14 @@
 재정경제부 소관 **3개 주제**만 다루며, 각 조항은 **영문 원문 + 한국어 정본**을 한 쌍으로 보여줍니다.
 
 > ### 📌 이 저장소는 **2차 사이클(확장) 작업 공간**입니다
-> 1차 사이클 완료본([`fta-digital-compare`](https://github.com/Changyeop4513/fta-digital-compare))을 기준선으로 복제해 출발한 **별개 저장소**입니다.
-> **배포에는 아직 연결돼 있지 않아**, 여기에 push해도 아래 운영 사이트에는 반영되지 않습니다.
+> 1차 사이클 완료본([`fta-digital-compare`](https://github.com/Changyeop4513/fta-digital-compare))을 기준선으로 복제해 출발한 **별개 저장소**이며, 자체 사이트로 배포됩니다.
+> 두 저장소·사이트는 완전히 분리돼 있어 서로 영향을 주지 않습니다.
 > 확장을 시작하면 이 README도 새 프로젝트 기준으로 다시 작성하세요.
 
-🔗 **1차 사이클 배포본(운영 중, 별개) — [https://fta-digital-compare.vercel.app](https://fta-digital-compare.vercel.app)**
-(설치·로그인 없이 브라우저에서 바로 열립니다)
+🔗 **이 저장소의 사이트 — [https://fta-digital-compare-next.vercel.app](https://fta-digital-compare-next.vercel.app)**
+(설치·로그인 없이 브라우저에서 바로 열립니다 · `main` push 시 자동 재배포)
+
+🔗 1차 사이클 배포본(별개) — [https://fta-digital-compare.vercel.app](https://fta-digital-compare.vercel.app)
 
 ---
 
@@ -246,7 +248,7 @@ npm run preview
 
 정적 사이트이므로 어디에나 배포할 수 있습니다.
 
-> **이 저장소는 아직 배포에 연결돼 있지 않습니다.** 배포하려면 [Vercel](https://vercel.com/new)에서 이 저장소를 **새 프로젝트로 import** 하면 됩니다 — 아래 `vercel.json` 설정이 그대로 적용됩니다. (1차 사이클 배포본은 별개 저장소 `fta-digital-compare`에서 관리되며, 그쪽은 `main` push 시 자동 재배포됩니다.)
+> 이 저장소는 **Vercel 프로젝트 `fta-digital-compare-next`에 연결**돼 있어 `main` 브랜치에 push하면 [자동 재배포](https://fta-digital-compare-next.vercel.app)됩니다. (1차 사이클 배포본은 별개 저장소 `fta-digital-compare`에서 관리되며 서로 영향이 없습니다.)
 
 [`vercel.json`](vercel.json)이 포함돼 있어 배포 시 아래 **보안 응답 헤더 5종**이 적용됩니다.
 

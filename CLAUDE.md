@@ -4,10 +4,10 @@
 >
 > | 구분 | 내용 |
 > |------|------|
-> | **이 폴더** | `바탕화면/프로젝트` — **2차 사이클(확장) 작업 공간**. 저장소 **`Changyeop4513/fta-digital-compare-next`** (공개, 기본 브랜치 `main`). **배포는 아직 미연결.** |
-> | **원본** | `바탕화면/My-app` — 1차 사이클 완료·배포본. 저장소 `Changyeop4513/fta-digital-compare`, 사이트 https://fta-digital-compare.vercel.app |
+> | **이 폴더** | `바탕화면/프로젝트` — **2차 사이클(확장) 작업 공간**. 저장소 **`Changyeop4513/fta-digital-compare-next`** (공개, `main`) · 사이트 **https://fta-digital-compare-next.vercel.app** |
+> | **원본** | `바탕화면/My-app` — 1차 사이클 완료·배포본. 저장소 `Changyeop4513/fta-digital-compare` · 사이트 https://fta-digital-compare.vercel.app |
 >
-> **여기서 작업한 내용은 원본 사이트에 반영되지 않습니다.** 저장소가 서로 다르고, 이 저장소에는 Vercel이 연결돼 있지 않아 push해도 배포가 일어나지 않습니다.
+> **둘은 완전히 분리된 저장소·사이트입니다.** 여기서 push하면 **이 폴더의 사이트(`-next`)만** 재배포되고, 원본 사이트에는 전혀 영향이 없습니다.
 > 아래 문서들(PRD·DESIGN·PLAN·CHECK)은 **1차 사이클의 완료 기록(as-built)** 으로, 확장의 출발점 자료입니다. 2차 사이클을 시작하면 각 문서를 v2.0으로 새로 작성하세요.
 
 ---
@@ -53,10 +53,11 @@
 - **주 사용자:** 재정경제부 내부 실무자 (확장: 통상 실무자·연구자)
 - **부처명 표기:** 정식 명칭은 **재정경제부**, 짧게 쓸 필요가 있을 때는 약칭 **재경부**를 사용한다.
 - **핵심 가치:** 협정마다 흩어진 조항을 한 화면에서 원문 그대로 비교 (수작업 20~30분 → 3분 이내)
-- **실행 환경 〔확장 사본 기준〕:** 로컬 실행(`npm run dev`) + **GitHub 저장소 연결 완료, 배포는 미연결.**
+- **실행 환경 〔확장 사본 기준〕:** 로컬 실행(`npm run dev`) + **GitHub·Vercel 연결 완료.**
   - 저장소: **https://github.com/Changyeop4513/fta-digital-compare-next** (공개, `origin`/`main`)
-  - **push해도 배포되지 않는다** — 이 저장소에는 Vercel이 연결돼 있지 않다. 배포하려면 **Vercel에서 이 저장소를 새 프로젝트로 import** 하면 된다. (`vercel.json`의 보안 헤더 설정은 그대로 적용됨)
-  - 커밋·push 전에는 원본과 동일하게 **로컬 검증 루프를 통과**할 것.
+  - 사이트: **https://fta-digital-compare-next.vercel.app** (보안 헤더 5종 적용 확인됨)
+  - **`main`에 push하면 이 사이트가 자동 재배포**된다 — push 전 반드시 **로컬 검증 루프를 통과**할 것.
+  - 원본 사이트(`fta-digital-compare`)와는 **완전히 별개**라 서로 영향을 주지 않는다.
   - 참고 — **1차 사이클 배포본**(별개): 사이트 https://fta-digital-compare.vercel.app · 저장소 `Changyeop4513/fta-digital-compare` (원본 폴더 `My-app`에서 관리)
 
 ## 기술 스택
