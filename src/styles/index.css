@@ -644,3 +644,195 @@ body {
   padding: 0;
   text-decoration: underline;
 }
+
+/* --- 인쇄 / PDF 저장 --- */
+
+/* 컨트롤 바 안의 인쇄 버튼 자리. 다른 컨트롤과 구분되도록 위에 경계선을 둔다. */
+.print-action {
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: flex-end;
+}
+
+.print-button {
+  border: 1px solid var(--navy);
+  background-color: #ffffff;
+  color: var(--navy);
+  font-size: 13px;
+  font-weight: 700;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.print-button:hover:not(:disabled) {
+  background-color: var(--navy);
+  color: #ffffff;
+}
+
+.print-button:disabled {
+  border-color: var(--border);
+  color: var(--faint);
+  cursor: not-allowed;
+}
+
+/* 인쇄물 머리글과 조항 출처는 화면에서는 숨긴다 (인쇄에서만 나타난다) */
+.print-header,
+.article-card-source {
+  display: none;
+}
+
+/* 인쇄 · PDF 저장 전용 규칙.
+   방침: A4 가로에 협정을 화면처럼 나란히 두고, 접힌 원문은 모두 펼친다.
+   (종이에서는 "더보기"를 누를 수 없으므로 접힌 채 인쇄되면 원문이 잘려 나간다) */
+@media print {
+  @page {
+    size: A4 landscape;
+    margin: 12mm;
+  }
+
+  /* 칸 머리의 남색과 검색 하이라이트를 살린다 — 어느 칸이 어느 협정인지,
+     무엇을 검색했는지가 종이에서도 구분돼야 한다. (주 용도가 PDF 저장이라 색 비용이 없다) */
+  * {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  body {
+    background-color: #ffffff;
+    font-size: 9pt;
+  }
+
+  /* 화면 전용 요소는 감춘다 — 종이에서 누를 수 없는 것들(컨트롤·버튼)과
+     화면 안내용 요소(로고 헤더·조항 유무 바) */
+  .app-header,
+  .control-bar,
+  .availability-bar,
+  .more-button {
+    display: none !important;
+  }
+
+  /* 인쇄 전용 요소를 드러낸다 */
+  .print-header {
+    display: block;
+    margin-bottom: 8mm;
+    border-bottom: 2px solid #1a2a4a;
+    padding-bottom: 4mm;
+  }
+
+  .print-header-title {
+    font-size: 15pt;
+    font-weight: 700;
+    color: #1a2a4a;
+    margin-bottom: 3mm;
+  }
+
+  /* 조건(주제·협정·검색어·출력 시점)을 라벨-값 두 칸으로 나열 */
+  .print-header-meta {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1mm 4mm;
+    margin: 0 0 3mm;
+    font-size: 9pt;
+  }
+
+  .print-header-meta dt {
+    font-weight: 700;
+    color: #4a5570;
+  }
+
+  .print-header-meta dd {
+    margin: 0;
+  }
+
+  .print-header-note {
+    margin: 0;
+    font-size: 8pt;
+    color: #4a5570;
+  }
+
+  /* 화면 여백·최대폭 제약을 풀어 종이 폭을 다 쓴다 */
+  .app-main {
+    max-width: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* 접힌 원문을 전부 펼친다 (핵심) */
+  .article-lang-text.is-clamped {
+    display: block;
+    -webkit-line-clamp: unset;
+    overflow: visible;
+  }
+
+  /* 나란히 배치 유지.
+     overflow 를 반드시 visible 로 되돌린다 — auto/hidden 이면 여러 장으로 나뉘는 내용이
+     첫 장 분량에서 잘려 인쇄된다. */
+  .comparison-view {
+    overflow-x: visible;
+    gap: 4mm;
+  }
+
+  .agreement-column {
+    min-width: 0;
+    overflow: visible;
+    box-shadow: none;
+    border-radius: 0;
+  }
+
+  .agreement-column-header {
+    font-size: 10pt;
+    padding: 2mm 3mm;
+    break-after: avoid; /* 칸 머리만 남고 내용이 다음 장으로 넘어가는 것을 막는다 */
+  }
+
+  .agreement-column-body {
+    padding: 3mm;
+  }
+
+  /* 장 나눔 규칙.
+     조항 원문은 한 장(A4 가로 인쇄 영역 ≈ 186mm)보다 긴 경우가 많다 —
+     실제로 한-미 제15.3조는 4칸 기준 5장 분량이다. 그래서 카드 전체에
+     break-inside: avoid 를 걸지 않는다(지켜질 수 없는 요구라 오히려 앞 장에
+     큰 빈 공간을 만든다). 대신 "머리만 남고 넘어가는" 것만 막는다. */
+  .article-card-no,
+  .article-card-baseline {
+    break-after: avoid; /* 조항 번호·기준일만 남고 원문이 다음 장으로 가는 것을 막는다 */
+  }
+
+  .article-lang-label {
+    break-after: avoid; /* EN·KO 라벨이 원문과 떨어지지 않게 */
+  }
+
+  .article-card-source {
+    break-before: avoid; /* 출처가 원문과 떨어져 혼자 넘어가지 않게 */
+  }
+
+  /* 한 줄만 남거나 한 줄만 넘어가는 것을 막는다 */
+  p {
+    orphans: 2;
+    widows: 2;
+  }
+
+  .article-card-no {
+    font-size: 9.5pt;
+  }
+
+  /* 조항 출처 — 인쇄물의 인용 근거 */
+  .article-card-source {
+    display: block;
+    margin-top: 2mm;
+    padding-top: 1.5mm;
+    border-top: 1px dotted #b7c0dc;
+    font-size: 7.5pt;
+    color: #4a5570;
+    line-height: 1.4;
+  }
+
+  /* 링크 주소가 본문에 끼어들지 않게 한다 (source 에 링크가 들어 있는 경우) */
+  a[href]::after {
+    content: '';
+  }
+}

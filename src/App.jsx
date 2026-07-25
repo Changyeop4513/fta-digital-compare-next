@@ -1,10 +1,12 @@
 // 전체 앱의 최상위 컴포넌트. 상태(state)를 여기서 관리해 하위 컴포넌트에 내려준다. (DESIGN.md 4번)
 // 개발 단위 7(비교 뷰) 단계 — 선택한 협정을 좌우로 나란히 비교 뷰로 보여준다.
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import moefLogo from './assets/moef-logo-header.svg' // 재정경제부 로고 (어두운 헤더용 반전 버전: 흰 원판 제거, 남색 불꽃·글자를 흰색으로)
 import TopicSelector, { TOPICS } from './components/TopicSelector.jsx'
 import AgreementSelector from './components/AgreementSelector.jsx'
 import SearchBar from './components/SearchBar.jsx'
+import PrintButton from './components/PrintButton.jsx'
+import PrintHeader from './components/PrintHeader.jsx'
 import AvailabilityBar from './components/AvailabilityBar.jsx'
 import ComparisonView from './components/ComparisonView.jsx'
 import EmptyState from './components/EmptyState.jsx'
@@ -21,6 +23,11 @@ export default function App() {
 
   // 검색어. 비교 뷰에 보이는 원문(선택 주제·협정 범위) 안에서만 하이라이트한다. (DESIGN.md 상태: keyword)
   const [keyword, setKeyword] = useState('')
+
+  // 인쇄물 머리글에 적을 출력 시점. 인쇄를 누른 순간의 값을 기록한다.
+  const [printedAt, setPrintedAt] = useState('')
+  // 인쇄 요청 횟수. 값이 바뀔 때만 window.print()를 부르는 방아쇠로 쓴다.
+  const [printRequest, setPrintRequest] = useState(0)
 
   // 검색 0건 판정 (개발 단위 11, 예외): 검색어가 있는데 선택 범위(주제+협정)의 원문 어디에도
   // 없으면 "검색 결과가 없습니다"를 안내한다. 검색은 전체가 아니라 선택 범위 안에서만 한다.
@@ -65,6 +72,27 @@ export default function App() {
       )
     })
 
+  // 인쇄할 내용이 있는가 — 비교 뷰가 안 나오는 두 경우(협정 0개 · 검색 0건)에는 버튼을 잠근다.
+  // 빈 종이가 나오는 것보다 버튼이 잠기는 편이 낫다.
+  const nothingToPrint = selectedAgreements.length === 0 || noSearchResult
+
+  // 인쇄 실행 — 출력 시점을 먼저 상태에 넣고, 그 값이 화면에 반영된 뒤에 인쇄 창을 띄운다.
+  // (setState 직후 바로 window.print()를 부르면 머리글의 출력 시점이 비어 있는 채로 인쇄된다)
+  function handlePrint() {
+    const d = new Date()
+    const pad = (n) => String(n).padStart(2, '0')
+    setPrintedAt(
+      `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())} ` +
+        `${pad(d.getHours())}:${pad(d.getMinutes())}`
+    )
+    setPrintRequest((n) => n + 1)
+  }
+
+  useEffect(() => {
+    if (printRequest === 0) return // 첫 렌더에서는 인쇄하지 않는다
+    window.print()
+  }, [printRequest])
+
   return (
     <div className="app">
       {/* ① 헤더 — 로고 + (제목 + 부제) */}
@@ -91,7 +119,18 @@ export default function App() {
             onToggle={toggleAgreement}
           />
           <SearchBar keyword={keyword} onChange={setKeyword} />
+          {/* ⑤ 내보내기 — 현재 비교 결과를 인쇄하거나 PDF로 저장 */}
+          <PrintButton disabled={nothingToPrint} onPrint={handlePrint} />
         </section>
+
+        {/* 인쇄물 머리글 — 화면에서는 숨겨져 있고 인쇄에서만 나온다.
+            종이에는 컨트롤 바가 안 나오므로 "어떤 조건으로 뽑은 표인지"를 여기 남긴다. */}
+        <PrintHeader
+          topicLabel={topicLabel}
+          selectedAgreements={selectedAgreements}
+          keyword={keyword}
+          printedAt={printedAt}
+        />
 
         {/* ③ 협정별 조항 유무 바 — 선택 주제에 대해 협정별 있음/없음 자동 표시 (기능 3).
             배지를 눌러 바로 비교 대상에 넣을 수 있다 (기능 3 → 기능 1 연결). */}

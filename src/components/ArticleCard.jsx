@@ -93,6 +93,13 @@ export default function ArticleCard({ article, keyword }) {
           {expanded ? '접기' : '더보기'}
         </button>
       )}
+
+      {/* 출처 — 화면에는 표시하지 않고 인쇄·PDF에서만 나온다(CSS의 @media print).
+          화면은 원문 비교에 집중시키고(PRD: source는 기록만), 종이는 회의·보고에 돌려 쓰이므로
+          어느 협정문 어디서 온 조항인지 남겨 인용할 수 있게 한다. */}
+      {article.source && (
+        <div className="article-card-source">출처: {article.source}</div>
+      )}
     </div>
   )
 }

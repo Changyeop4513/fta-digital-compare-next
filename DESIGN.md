@@ -96,6 +96,37 @@ PC 넓은 화면 기준, 위에서 아래로 4개 영역이 쌓인다. **① 헤
 - 이미 선택된 협정 배지는 **선택 상태로 구분 표시**하고, 클릭하면 해제된다.
 - 4개가 찬 상태에서 **미선택 배지는 버튼 자체를 `disabled` 처리**한다(배지에 `＋` 기호가 없으므로 기호를 지우는 방식이 아니다). 이때 `title`로 `최대 4개까지 비교할 수 있습니다`를 알린다.
 
+### ⑤ 비교 결과 내보내기 〔3차 신규 — 기능 4〕
+
+**설계:** 컨트롤 바 맨 아래 오른쪽에 **`🖨 인쇄 / PDF 저장`** 버튼 하나를 두고, 누르면 브라우저 인쇄 창을 띄운다. 별도 PDF 라이브러리를 쓰지 않는다(정적 앱 · CSP `'self'` · 한글 폰트 내장 부담).
+
+```
+        (화면)                                  (인쇄물 = A4 가로)
+┌──────────── 컨트롤 바 ────────────┐   ┌──────────── A4 가로 ────────────────┐
+│ 주제 ◉ Customs Duties(관세)       │   │ FTA 디지털협정 조항 비교             │
+│ 협정 [미국 ✕][EU ✕]  [＋ 협정 추가]│   │ 주제      Customs Duties(관세)       │
+│ 원문 검색 🔍 [________]           │   │ 비교 협정  한-미국 FTA · 한-EU FTA   │
+│ ─────────────────────────────     │   │ 출력 시점  2026-07-25 22:54          │
+│              [🖨 인쇄 / PDF 저장] │   │ ─────────────────────────────────── │
+└───────────────────────────────────┘   │ 한-미국 FTA   │ 한-EU FTA           │
+                                         │ 제15.3조      │ 제7.48조 제3항      │
+   ※ 컨트롤 바·유무 바·헤더는            │ 기준일 …      │ 기준일 …            │
+      인쇄에서 감춘다                    │ EN 원문(전문) │ EN 원문(전문)       │
+   ※ 접힌 원문은 인쇄에서 전부 펼친다    │ KO 원문(전문) │ KO 원문(전문)       │
+                                         │ 출처: …       │ 출처: …             │
+                                         └─────────────────────────────────────┘
+```
+
+**규칙**
+- **접힌 원문은 인쇄에서 모두 펼친다** — 종이에서는 "더보기"를 누를 수 없으므로 접힌 채 인쇄되면 **원문이 잘려 나간다**(원문 무결성 위반). 접기가 CSS(`is-clamped`) 방식이라 전문이 이미 DOM에 있어 `-webkit-line-clamp: unset`으로 해제된다.
+- **`overflow`를 `visible`로 되돌린다** — 비교 뷰(`overflow-x: auto`)·협정 칸(`overflow: hidden`)을 그대로 두면 여러 장으로 나뉘는 내용이 **첫 장 분량에서 잘린다.**
+- **조항 카드에 `break-inside: avoid`를 걸지 않는다** — 실측 결과 조항 원문은 한 장보다 긴 경우가 많다(한-미 제15.3조 = 4칸 기준 **약 5장** 분량). 지켜질 수 없는 요구여서 앞 장에 큰 빈 공간만 만든다. 대신 **조항 번호·기준일·EN/KO 라벨에 `break-after: avoid`**, **출처에 `break-before: avoid`**, 원문에 `orphans/widows: 2`를 걸어 "머리만 남고 넘어가는" 것만 막는다.
+- **출처(`source`)는 인쇄물에만** 표시한다 — 화면은 원문 비교에 집중시키고, 종이는 회의·보고용이라 인용 근거가 필요하다. 화면 표시는 여전히 범위 밖이다.
+- **머리글에 조건을 남긴다** — 주제 · 비교 협정(**정식 명칭**) · 원문 검색어(있을 때만) · 출력 시점. 종이에는 컨트롤 바가 없어 "무엇을 기준으로 뽑은 표인지" 알 수 없기 때문이다.
+- **색은 살린다**(`print-color-adjust: exact`) — 칸 머리의 남색과 검색 하이라이트가 종이에서도 구분돼야 하고, 주 용도가 PDF 저장이라 색 비용이 없다.
+- **인쇄할 내용이 없으면 버튼을 잠근다**(협정 0개 · 검색 0건). 빈 종이보다 잠긴 버튼이 낫다.
+- **출력 시점은 상태에 먼저 넣고 반영된 뒤 `window.print()`를 부른다**(`printRequest` 카운터 + `useEffect`). `setState` 직후 바로 부르면 출력 시점이 **빈 채로** 인쇄된다.
+
 ### ①·④ 헤더와 비교 뷰 — 1차와 동일
 
 - **헤더:** 재정경제부 로고(다크 배경용 반전본) + 제목. 네이비 그라디언트.
@@ -161,7 +192,9 @@ App                          (전체를 감싸고 공유 상태를 관리)
 │  ├─ TopicSelector          · 주제 3개 중 1개 (네이티브 라디오)
 │  ├─ AgreementSelector      · 선택 칩 + "＋ 협정 추가" 버튼          〔v2.0 개편〕
 │  │  └─ AgreementPicker     · 추가 패널: 이름 검색 + 있음만 보기 + 목록  〔v2.0 신규〕
-│  └─ SearchBar              · 원문 키워드 검색창
+│  ├─ SearchBar              · 원문 키워드 검색창
+│  └─ PrintButton            · 인쇄 / PDF 저장 버튼                      〔3차 신규〕
+├─ PrintHeader               ⑤ 인쇄물 머리글 (화면 숨김, 인쇄만)         〔3차 신규〕
 ├─ AvailabilityBar           ③ 유무 요약 + "있음" 배지 + "없음" 접기   〔v2.0 개편〕
 ├─ ComparisonView            ④ 비교 뷰 (최대 4칸)
 │  └─ AgreementColumn         · 협정 1개 = 세로 칸
@@ -169,7 +202,7 @@ App                          (전체를 감싸고 공유 상태를 관리)
 └─ EmptyState                화면 전체 예외 안내 (협정 0개 / 원문 검색 0건)
 ```
 
-> **〔v2.1 정정〕 헤더와 컨트롤 바는 별도 컴포넌트가 아니다.** `App.jsx` 안의 `<header>`·`<section className="control-bar">` 마크업이다. 상태를 갖지 않고 자리만 잡는 껍데기라 컴포넌트로 분리할 이유가 없었다. **실제 컴포넌트 파일은 9개** — `TopicSelector` · `AgreementSelector` · `AgreementPicker` · `SearchBar` · `AvailabilityBar` · `ComparisonView` · `AgreementColumn` · `ArticleCard` · `EmptyState`.
+> **〔v2.1 정정〕 헤더와 컨트롤 바는 별도 컴포넌트가 아니다.** `App.jsx` 안의 `<header>`·`<section className="control-bar">` 마크업이다. 상태를 갖지 않고 자리만 잡는 껍데기라 컴포넌트로 분리할 이유가 없었다. **실제 컴포넌트 파일은 11개** — `TopicSelector` · `AgreementSelector` · `AgreementPicker` · `SearchBar` · **`PrintButton`** · **`PrintHeader`** · `AvailabilityBar` · `ComparisonView` · `AgreementColumn` · `ArticleCard` · `EmptyState`. (뒤의 두 개가 3차에서 추가됐다)
 
 **상태(state) 배치**
 
@@ -180,6 +213,8 @@ App                          (전체를 감싸고 공유 상태를 관리)
 | `selectedTopic` | App | 현재 고른 주제 1개 |
 | `selectedAgreements` | App | 고른 협정 목록 (**순서 유지, 최대 4**) |
 | `keyword` | App | **원문** 검색어 |
+| `printedAt` | App | 인쇄물 머리글에 적을 **출력 시점** 〔3차〕 |
+| `printRequest` | App | 인쇄 요청 카운터 — 값이 바뀔 때만 `window.print()`를 부르는 방아쇠 〔3차〕 |
 | `pickerOpen` | AgreementSelector | 추가 패널 열림 여부 〔v2.0〕 |
 | `query` | AgreementPicker | **협정 이름** 검색어 〔v2.0〕 |
 | `onlyAvailable` | AgreementPicker | "조항 있는 협정만 보기" 토글 〔v2.0〕 **기본값 `true`(켜짐)** |
@@ -212,6 +247,8 @@ App                          (전체를 감싸고 공유 상태를 관리)
    │  ├─ AgreementSelector.jsx    선택 칩 + 추가 버튼            〔v2.0 개편〕
    │  ├─ AgreementPicker.jsx      추가 패널 (검색·필터·목록)     〔v2.0 신규〕
    │  ├─ SearchBar.jsx            원문 키워드 검색창
+   │  ├─ PrintButton.jsx          인쇄 / PDF 저장 버튼            〔3차 신규〕
+   │  ├─ PrintHeader.jsx          인쇄물 머리글 (인쇄 전용)       〔3차 신규〕
    │  ├─ AvailabilityBar.jsx      유무 요약·배지·접기            〔v2.0 개편〕
    │  ├─ ComparisonView.jsx       비교 뷰 (기능 1)
    │  ├─ AgreementColumn.jsx      협정 1개 = 세로 칸
