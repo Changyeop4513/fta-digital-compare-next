@@ -6,7 +6,6 @@
 // (수록 진행 상황은 PRD.md 9-1 표 참조)
 export const AGREEMENTS = [
   '한-칠레',
-  '한-싱가포르',
   '한-EFTA',
   '한-ASEAN',
   '한-인도',
