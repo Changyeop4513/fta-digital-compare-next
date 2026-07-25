@@ -9,6 +9,7 @@ import AvailabilityBar from './components/AvailabilityBar.jsx'
 import ComparisonView from './components/ComparisonView.jsx'
 import EmptyState from './components/EmptyState.jsx'
 import articles from './data/articles.json'
+import { AGREEMENTS, MAX_SELECTION } from './constants.js'
 
 export default function App() {
   // 현재 고른 주제 1개. 한 번에 1개만. 기본값은 첫 번째 주제. (DESIGN.md 상태: selectedTopic)
@@ -26,6 +27,30 @@ export default function App() {
   // [공백 처리 정책] 검색어 앞뒤 공백은 무시(trim)하고, 단어 사이 공백은 그대로 매칭에 사용한다.
   //   (예: "  무관세  " → "무관세"로 검색 / "전자적 전송"은 사이 공백까지 포함해 부분일치)
   //   이 정책은 하이라이트(ArticleCard.highlightText·hasMatch)에서도 동일하게 .trim()으로 일관 적용된다.
+  // 협정별 조항 유무 판정 (기능 3). 판정 기준은 데이터의 topic 태그뿐이며 임의 추론하지 않는다.
+  // 협정 선택 패널과 유무 바가 같은 값을 쓰도록 여기서 한 번만 계산해 내려준다.
+  const availability = AGREEMENTS.map((agreement) => ({
+    agreement,
+    available: articles.some(
+      (a) => a.agreement === agreement && a.topic === selectedTopic
+    ),
+  }))
+
+  // 현재 주제의 화면 표시명 (유무 바 요약 문구에 쓴다)
+  const topicLabel = TOPICS.find((t) => t.key === selectedTopic)?.label ?? ''
+
+  // 협정 선택/해제 — 칩·추가 패널·유무 배지가 모두 이 하나를 쓴다.
+  // 선택 순서를 유지하고(비교 뷰 좌우 순서), 최대 개수를 넘으면 무시한다.
+  function toggleAgreement(agreement) {
+    setSelectedAgreements((prev) =>
+      prev.includes(agreement)
+        ? prev.filter((a) => a !== agreement)
+        : prev.length >= MAX_SELECTION
+          ? prev
+          : [...prev, agreement]
+    )
+  }
+
   const trimmedKeyword = keyword.trim()
   const scopedArticles = articles.filter(
     (a) => a.topic === selectedTopic && selectedAgreements.includes(a.agreement)
@@ -61,14 +86,21 @@ export default function App() {
         <section className="control-bar">
           <TopicSelector selectedTopic={selectedTopic} onSelect={setSelectedTopic} />
           <AgreementSelector
+            availability={availability}
             selectedAgreements={selectedAgreements}
-            onChange={setSelectedAgreements}
+            onToggle={toggleAgreement}
           />
           <SearchBar keyword={keyword} onChange={setKeyword} />
         </section>
 
-        {/* ③ 협정별 조항 유무 바 — 선택 주제에 대해 협정별 있음/없음 자동 표시 (기능 3) */}
-        <AvailabilityBar selectedTopic={selectedTopic} articles={articles} />
+        {/* ③ 협정별 조항 유무 바 — 선택 주제에 대해 협정별 있음/없음 자동 표시 (기능 3).
+            배지를 눌러 바로 비교 대상에 넣을 수 있다 (기능 3 → 기능 1 연결). */}
+        <AvailabilityBar
+          topicLabel={topicLabel}
+          availability={availability}
+          selectedAgreements={selectedAgreements}
+          onToggle={toggleAgreement}
+        />
 
         {/* ④ 비교 뷰 — 선택 협정을 좌우로 나란히 (기능 1).
             협정 0개면 안내 (예외 처리 완성은 개발 단위 11에서 다듬음). */}

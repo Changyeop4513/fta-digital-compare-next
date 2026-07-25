@@ -1,55 +1,87 @@
-// 협정 선택 UI (개발 단위 6) — 대상 협정을 체크박스로 고른다.
-// 규칙(CLAUDE.md / DESIGN.md):
-//  - 한 번에 최대 4개까지만 선택 (초과 금지)
-//  - 고른 순서를 유지한다 (비교 뷰 좌우 배치가 이 순서를 따름)
+// 협정 선택 UI — 2차 사이클 개편 (협정 25개 대응).
+// 규칙(DESIGN.md 1번 ②):
+//  - 고른 협정만 칩으로 컨트롤 바에 항상 노출한다 (최대 4개라 한 줄에 들어간다)
+//  - 고르는 행위는 "＋ 협정 추가" 패널로 분리한다 (25개를 한 줄에 나열하지 않는다)
+//  - 칩의 좌→우 순서가 비교 뷰의 좌우 순서다 (선택 순서 유지)
+//  - 최대 4개가 차면 추가 버튼을 막는다
 //  - 주제를 바꿔도 이 선택은 유지된다 (App이 selectedTopic 과 별개 상태로 관리)
-import { AGREEMENTS } from '../constants.js'
-
-const MAX_SELECTION = 4 // 한 화면 최대 4개 협정 (CLAUDE.md 규칙)
+import { useState, useEffect, useRef } from 'react'
+import { MAX_SELECTION } from '../constants.js'
+import AgreementPicker from './AgreementPicker.jsx'
 
 // props:
+//  - availability: [{ agreement, available }] — 현재 주제 기준 협정별 조항 유무 (App에서 계산)
 //  - selectedAgreements: 현재 선택된 협정 배열(선택 순서 유지)
-//  - onChange(nextArray): 선택이 바뀌면 상위(App)에 알린다
-export default function AgreementSelector({ selectedAgreements, onChange }) {
+//  - onToggle(agreement): 선택/해제. 구현은 App 한 곳에만 두어 칩·패널·유무 배지가 같은 것을 쓴다.
+//    (직접 배열을 만들어 넘기면 한 번에 여러 번 눌렸을 때 앞선 선택이 덮어써진다 — App은 함수형 갱신을 쓴다)
+export default function AgreementSelector({ availability, selectedAgreements, onToggle }) {
+  const [pickerOpen, setPickerOpen] = useState(false)
+  // 위젯 전체(라벨·칩·버튼·패널)를 감싸는 영역. 바깥 클릭 판정 기준이 된다.
+  const wrapperRef = useRef(null)
+
+  // 패널이 열려 있을 때만 바깥 클릭·Esc 를 감시한다.
+  useEffect(() => {
+    if (!pickerOpen) return
+    function onDocClick(e) {
+      if (wrapperRef.current && !wrapperRef.current.contains(e.target)) setPickerOpen(false)
+    }
+    function onKeyDown(e) {
+      if (e.key === 'Escape') setPickerOpen(false)
+    }
+    document.addEventListener('click', onDocClick)
+    document.addEventListener('keydown', onKeyDown)
+    return () => {
+      document.removeEventListener('click', onDocClick)
+      document.removeEventListener('keydown', onKeyDown)
+    }
+  }, [pickerOpen])
+
   const isFull = selectedAgreements.length >= MAX_SELECTION
 
-  function toggle(agreement) {
-    if (selectedAgreements.includes(agreement)) {
-      // 이미 선택됨 → 해제 (배열에서 제거, 나머지 순서 유지)
-      onChange(selectedAgreements.filter((a) => a !== agreement))
-    } else {
-      // 미선택 → 추가. 단, 최대 개수를 넘으면 무시한다.
-      if (isFull) return
-      onChange([...selectedAgreements, agreement])
-    }
-  }
-
   return (
-    <div className="agreement-selector">
+    <div className="agreement-selector" ref={wrapperRef}>
       <span className="control-label">
         협정 선택 <span className="control-hint">(최대 {MAX_SELECTION}개)</span>
       </span>
-      <div className="agreement-checkboxes">
-        {AGREEMENTS.map((agreement) => {
-          const checked = selectedAgreements.includes(agreement)
-          // 아직 안 골랐는데 이미 4개가 찼으면 더 못 고르게 비활성화
-          const disabled = !checked && isFull
-          return (
-            <label
-              key={agreement}
-              className={'agreement-checkbox' + (disabled ? ' is-disabled' : '')}
-            >
-              <input
-                type="checkbox"
-                checked={checked}
-                disabled={disabled}
-                onChange={() => toggle(agreement)}
-              />
+
+      <div className="agreement-chips">
+        {selectedAgreements.length === 0 ? (
+          <span className="agreement-chips-empty">아직 고른 협정이 없습니다</span>
+        ) : (
+          selectedAgreements.map((agreement) => (
+            <span key={agreement} className="agreement-chip">
               {agreement}
-            </label>
-          )
-        })}
+              <button
+                type="button"
+                className="agreement-chip-remove"
+                onClick={() => onToggle(agreement)}
+                aria-label={`${agreement} 선택 해제`}
+              >
+                ✕
+              </button>
+            </span>
+          ))
+        )}
+
+        <button
+          type="button"
+          className={'agreement-add' + (pickerOpen ? ' is-open' : '')}
+          onClick={() => setPickerOpen((v) => !v)}
+          disabled={isFull && !pickerOpen}
+          aria-expanded={pickerOpen}
+          title={isFull ? `최대 ${MAX_SELECTION}개까지 선택할 수 있습니다` : '협정 추가'}
+        >
+          ＋ 협정 추가
+        </button>
       </div>
+
+      {pickerOpen && (
+        <AgreementPicker
+          availability={availability}
+          selectedAgreements={selectedAgreements}
+          onToggle={onToggle}
+        />
+      )}
     </div>
   )
 }
