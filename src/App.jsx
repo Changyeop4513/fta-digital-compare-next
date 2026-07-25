@@ -86,6 +86,7 @@ export default function App() {
         <section className="control-bar">
           <TopicSelector selectedTopic={selectedTopic} onSelect={setSelectedTopic} />
           <AgreementSelector
+            availability={availability}
             selectedAgreements={selectedAgreements}
             onToggle={toggleAgreement}
           />
