@@ -52,10 +52,11 @@ export default function AvailabilityBar({
                 : '비교에 추가'
         }
       >
+        {/* 배지에는 협정 이름만 표시한다.
+            "있음/없음"은 요약 문구("N개 중 M개 보유")와 "조항 없는 협정" 접기 영역으로 이미 구분되고,
+            선택 여부는 색상(선택 시 네이비)으로 드러난다.
+            상태 설명은 title(마우스 오버)과 aria-pressed(스크린리더)로 계속 제공한다. */}
         <span className="availability-badge-name">{agreement}</span>
-        <span className="availability-badge-state">
-          {available ? (selected ? '✓ 비교 중' : '있음 ＋') : '없음'}
-        </span>
       </button>
     )
   }
