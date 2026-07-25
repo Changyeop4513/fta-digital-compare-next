@@ -385,5 +385,14 @@
     "text_ko": "1. 각 당사국은 무역행정문서를 전자적 형태로 공개하기 위해 노력한다.\n2. 각 당사국은 전자적으로 제출된 무역행정문서를 종이 형식의 그러한 문서와 법적으로 동등한 것으로 인정하기 위해 노력한다.",
     "source": "한-페루 FTA 제14장(전자상거래) 제14.6조 — 산업통상자원부 FTA 포털 게재 공식 협정문 PDF(국문·영문)에서 추출.",
     "baseline_date": "2011-08-01 발효 (산업통상자원부 FTA 포털 게재 협정문 기준)"
+  },
+  {
+    "agreement": "한-인도",
+    "topic": "express_shipments",
+    "article_no": "제5.5조 (Express Shipments / 특송화물)",
+    "text_en": "Each Party shall endeavour to adopt or maintain expedited customs procedures for express shipments while maintaining appropriate customs control and selection. These procedures shall, to the extent possible:\n(a) provide a separate and expedited customs procedures for express shipments, and where applicable, use the World Customs Organization Guidelines for the Immediate Release of Consignments by Customs;\n(b) provide for advance electronic submission and processing of information before physical arrival of express shipments to enable their release upon arrival; and\n(c) consistent with its laws and regulations, provide simplified documentary requirements for express shipments.",
+    "text_ko": "각 당사국은 적절한 통관 통제 및 선별을 유지하면서 특송화물을 위한 신속한 통관절차를 채택하거나 유지하도록 노력한다. 이들 절차는 가능한 한도에서,\n가. 특송화물을 위하여 별도의 신속한 통관절차를 규정하고 적용 가능한 경우 세계관세기구의 화물즉시반출지침을 이용한다.\n나. 도착 즉시 특송화물의 반출이 가능하도록 특송화물의 물리적 도착이전 정보의 전자적 제출 및 처리절차를 규정한다. 그리고\n다. 당사국의 법과 규정에 합치하도록 특송화물에 대한 간소화된 서류,요건을 규정한다.",
+    "source": "한-인도 CEPA 제5장(무역원활화 및 관세협력) 제5.5조 — 영문: 산업통상자원부 FTA 포털 게재 공식 협정문 PDF에서 추출 · 국문: 협정문 PDF의 텍스트 추출에서 문장부호가 줄 끝으로 밀려 나오는 현상이 있어, 사용자가 PDF 뷰어로 직접 확인해 제공한 원문을 그대로 수록. ※ 다호의 \"서류,요건\" 쉼표는 뷰어 확인 결과 원문 표기대로임.",
+    "baseline_date": "2010-01-01 발효 (산업통상자원부 FTA 포털 게재 협정문 기준)"
   }
 ]
