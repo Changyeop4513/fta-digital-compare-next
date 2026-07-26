@@ -62,6 +62,18 @@ body {
   letter-spacing: -0.2px;
 }
 
+/* 로고 = 제목과 같은 동작(첫 화면으로 새로고침).
+   이미지가 인라인 요소라 아래에 생기는 여백을 없애려고 inline-flex 로 감싼다. */
+.app-logo-link {
+  display: inline-flex;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.app-logo-link:hover {
+  opacity: 0.85; /* 로고는 밑줄을 그을 수 없으니 살짝 흐려져 누를 수 있음을 알린다 */
+}
+
 /* 제목 = 첫 화면으로 새로고침하는 링크.
    평소에는 링크처럼 보이지 않게 두고(공공 문서 톤 유지), 마우스를 올렸을 때만
    누를 수 있다는 것을 밑줄로 알린다. */

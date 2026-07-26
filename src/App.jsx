@@ -99,7 +99,23 @@ export default function App() {
       <header className="app-header">
         {/* 로고를 좌측에 두고, 제목·부제를 오른쪽 열에 세로로 쌓아 상하 가운데 정렬 */}
         <div className="app-header-inner app-title-row">
-          <img className="app-logo" src={moefLogo} alt="재정경제부 로고" />
+          {/* 로고도 제목과 같은 곳(첫 화면)으로 간다.
+              제목과 한 링크로 묶지 않은 이유: 로고는 제목+부제 전체에 세로 가운데로 맞춰져
+              있어서, 하나로 묶으면 부제가 로고 아래로 내려가 지금 배치가 무너진다.
+
+              대신 보조기술에는 감춘다(aria-hidden + tabIndex -1, alt 비움).
+              바로 옆 제목 링크와 목적지·동작이 완전히 같은 중복 링크라, 그대로 두면
+              스크린리더에서 같은 링크가 두 번 읽히고 탭 이동도 한 번 더 걸린다.
+              마우스 사용자는 로고를 누를 수 있고, 키보드·스크린리더 사용자는
+              제목 링크로 똑같은 일을 할 수 있어 잃는 기능이 없다. */}
+          <a
+            className="app-logo-link"
+            href={import.meta.env.BASE_URL}
+            aria-hidden="true"
+            tabIndex={-1}
+          >
+            <img className="app-logo" src={moefLogo} alt="" />
+          </a>
           <div className="app-header-text">
             {/* 제목을 누르면 첫 화면으로 새로고침한다 (고른 주제·협정·검색어가 모두 초기화된다).
                 버튼이 아니라 링크로 둔 이유: 키보드 이동·스크린리더 안내가 기본으로 되고,
