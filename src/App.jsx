@@ -101,7 +101,19 @@ export default function App() {
         <div className="app-header-inner app-title-row">
           <img className="app-logo" src={moefLogo} alt="재정경제부 로고" />
           <div className="app-header-text">
-            <h1>FTA 디지털협정 조항 비교 서비스</h1>
+            {/* 제목을 누르면 첫 화면으로 새로고침한다 (고른 주제·협정·검색어가 모두 초기화된다).
+                버튼이 아니라 링크로 둔 이유: 키보드 이동·스크린리더 안내가 기본으로 되고,
+                새 탭으로 열기 같은 브라우저 기본 동작도 그대로 쓸 수 있다.
+                주소는 BASE_URL 을 쓴다 — 배포 경로가 바뀌어도 따라간다. */}
+            <h1>
+              <a
+                className="app-title-link"
+                href={import.meta.env.BASE_URL}
+                title="처음 화면으로 새로고침"
+              >
+                FTA 디지털협정 조항 비교 서비스
+              </a>
+            </h1>
             <p className="app-subtitle">
               재정경제부 소관 디지털 통상 3개 주제(전자적 전송물 무관세 · 특송화물 · 종이 없는 무역)를 협정별로 나란히 비교합니다.
             </p>
