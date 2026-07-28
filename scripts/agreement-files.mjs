@@ -128,12 +128,17 @@ report('내용이 바뀐 파일', changed, '변경')
 report('새로 들어온 파일', added, '추가')
 report('사라진 파일', removed, '삭제')
 
-if (affected.size) {
+// 영향받는 수록 조항이 실제로 있을 때만 처리 절차를 안내한다.
+// (협정은 대상이지만 아직 수록 조항이 0건인 경우가 있다 — 예: 3주제 모두 '없음'인 협정에
+//  파일이 추가된 경우. 이때 재검증 절차를 띄우면 할 일이 있는 것처럼 보여 오해를 준다)
+const affectedRows = [...affected]
+  .sort()
+  .map((ag) => ({ ag, rows: articles.filter((x) => x.agreement === ag) }))
+const total = affectedRows.reduce((n, x) => n + x.rows.length, 0)
+
+if (total > 0) {
   console.log('\n다시 검증해야 할 수록 조항')
-  let total = 0
-  for (const ag of [...affected].sort()) {
-    const rows = articles.filter((x) => x.agreement === ag)
-    total += rows.length
+  for (const { ag, rows } of affectedRows) {
     console.log(`  ${ag}: ${rows.length}건`)
     for (const r of rows) console.log(`     - [${r.topic}] ${r.article_no}`)
   }
@@ -143,6 +148,14 @@ if (affected.size) {
   console.log('  3) 달라졌으면 원문을 갈아끼우고 baseline_date·source 를 새 기준으로 고친다')
   console.log('  4) CHECK.md 에 개정 반영 사실을 남긴다')
   console.log('  5) node scripts/agreement-files.mjs save "YYYY-MM-DD" 로 지문을 갱신한다')
+} else if (affected.size) {
+  // 대상 협정이긴 한데 수록 조항이 0건인 경우 (예: 3주제 모두 '없음'으로 확정한 협정)
+  console.log(
+    `\n영향받는 수록 조항 없음 — ${[...affected].sort().join(' · ')}는 현재 수록 조항이 0건입니다.`
+  )
+  console.log('  다만 새 파일에 그동안 못 본 조항이 있을 수 있으니 "없음" 판정 근거를 다시 확인하세요.')
+  console.log('  확인을 마쳤으면 node scripts/agreement-files.mjs save "YYYY-MM-DD" 로 지문을 갱신합니다.')
 } else {
   console.log('\n바뀐 파일이 대상 협정 24개와 무관합니다 — 수록 조항에 영향 없음.')
+  console.log('  확인을 마쳤으면 node scripts/agreement-files.mjs save "YYYY-MM-DD" 로 지문을 갱신합니다.')
 }

@@ -1,6 +1,6 @@
 {
   "확인일": "2026-07-28",
-  "파일수": 64,
+  "파일수": 66,
   "files": [
     {
       "file": "1. 한-칠레 FTA_Full_Agreement_eng.pdf",
@@ -373,6 +373,18 @@
       "agreement": "튀르키예",
       "bytes": 351746,
       "sha256": "db3306a2b67da36afcea99e20c0b0735cc7ce1caa666e621e22df4a72ad7d8d3"
+    },
+    {
+      "file": "8. 한-튀르키예 FTA 투자_Agreement_on_Investment_Annexes_tr_eg.pdf",
+      "agreement": "튀르키예",
+      "bytes": 340337,
+      "sha256": "02d0c86fbbbb4ff8d2a51d985d8c19ae36a8d58910019232d16e8c67c60692e6"
+    },
+    {
+      "file": "8. 한-튀르키예 FTA 투자_Agreement_on_Investment_Annexes_tr_kr.pdf",
+      "agreement": "튀르키예",
+      "bytes": 346956,
+      "sha256": "aab8da542fa3215d2c4624f3595b027bfc79c1ca9b4c32e7681e53353922efe9"
     },
     {
       "file": "9. 한-호주 FTA ko_au_eng.pdf",
