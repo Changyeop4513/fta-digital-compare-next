@@ -1,6 +1,6 @@
 {
   "확인일": "2026-07-28",
-  "파일수": 68,
+  "파일수": 70,
   "files": [
     {
       "file": "1. 한-칠레 FTA_Full_Agreement_eng.pdf",
@@ -397,6 +397,18 @@
       "agreement": "호주",
       "bytes": 16108874,
       "sha256": "a154ccda9efe88bba6a6dc175c7e528d325d2c8fd6e7229d54505c305231299a"
+    },
+    {
+      "file": "RCEP 04 Chapter 4_CUSTOMS PROCEDURES AND TRADE FACILITATION_eng.pdf",
+      "agreement": "RCEP",
+      "bytes": 101119,
+      "sha256": "65ef4ccd410d1acb8dc1a1ea8d7a594d8dda14b95623314d95bbd0a2746e31de"
+    },
+    {
+      "file": "RCEP 04 Chapter 4_CUSTOMS PROCEDURES AND TRADE FACILITATION_kor.pdf",
+      "agreement": "RCEP",
+      "bytes": 485405,
+      "sha256": "f704a4004aeb3e1acc4a8ef20ca10db79c6725cc5598e1a95849261ddc85a9c8"
     },
     {
       "file": "RCEP 12 Chapter 12_ELECTRONIC COMMERCE_eng.pdf",
