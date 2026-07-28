@@ -457,5 +457,14 @@
     "text_ko": "1. 당사자들은 디지털 경제가 정부조달에 영향을 미칠 수 있음을 인정하고, 개방적이고 공정하며 투명한 정부조달 시장이 중요함을 확인한다.\n2. 이러한 목적으로 당사자들은 조달 절차와 상품 및 서비스의 디지털화가 기존 및 미래의 국제적인 정부조달 약속에 얼마나 큰 영향을 미칠지를 이해하는 것과 관련한 협력 활동을 수행한다.",
     "source": "DEPA(디지털경제동반자협정) 제8모듈(최신 동향 및 기술) 제8.3조 — 사용자 제공 공식 협정문 PDF(국문·영문)에서 추출. 제1항·제2항 전문 수록. 각주 없음. ※ 이 주제는 「디지털 경제와 관련된 정부조달 조항」만 대상으로 하며, 전통 FTA의 정부조달 장(章)은 대상이 아니다.",
     "baseline_date": "2024-05-03 한국 가입 발효 (산업통상자원부 FTA 포털 게재 협정문 기준)"
+  },
+  {
+    "agreement": "RCEP",
+    "topic": "taxation_exception",
+    "article_no": "제17.14조 (Taxation Measures / 과세조치)",
+    "text_en": "1. For the purposes of this Article:\n(a) tax convention means an agreement for the avoidance of double taxation or other international taxation agreement or arrangement; and\n(b) taxes and taxation measures do not include any import or customs duties.\n2. Except as provided in this Article, nothing in this Agreement shall apply to taxation measures.\n3. This Agreement shall only grant rights or impose obligations with respect to taxation measures:\n(a) to the extent that the WTO Agreement grants rights or imposes obligations with respect to such taxation measures;\n(b) to the extent that Article 10.9 (Transfers) grants rights or imposes obligations with respect to such taxation measures.\n4. Nothing in this Agreement shall affect the rights and obligations of any Party under any tax convention. In the event of any inconsistency relating to taxation measures between this Agreement and any such tax convention, the latter shall prevail.\n5. Nothing in this Agreement shall oblige a Party to extend to any other Party the benefit of any treatment, preference, or privilege arising from any existing or future tax convention by which the Party is bound.",
+    "text_ko": "1. 이 조의 목적상,\n가. 조세협약이란 이중과세 방지를 위한 협정이나 그 밖의 국제 조세협정 또는 약정을 말한다. 그리고\n나. 조세 및 과세조치는 수입관세 또는 관세를 포함하지 않는다.\n2. 이 조에 규정된 경우를 제외하고, 이 협정의 어떠한 규정도 과세조치에 적용되지 않는다.\n3 이 협정은 과세조치와 관련하여 다음의 한도에서만 권리를 부여하거나 의무를 부과한다.\n가. 세계무역기구협정이 그러한 과세조치와 관련하여 권리를 부여하거나 의무를 부과하는 한도\n나. 제10.9조(송금)가 그러한 과세조치에 관련하여 권리를 부여하거나 의무를 부과하는 한도\n4. 이 협정의 어떠한 규정도 조세협약에 따른 어떠한 당사자의 권리와 의무에 영향을 미치지 않는다. 이 협정과 그러한 조세협약 간에 과세조치와 관련된 불합치가 있는 경우, 후자가 우선한다.\n5. 이 협정의 어떠한 규정도 당사자가 자신이 구속되는 기존 또는 미래의 어떠한 조세협약으로부터 발생하는 어떠한 대우, 선호 또는 특권의 혜택을 그 밖의 당사자에게 부여하도록 할 의무를 부과하지 않는다.",
+    "source": "RCEP(역내포괄적경제동반자협정) 제17장(일반규정 및 예외) 제17.14조 — 사용자 제공 협정문 PDF(국·영문 장별본)에서 추출. 제1항부터 제5항까지 전문 수록. ※ 국문 원문 제3항은 번호 뒤 마침표가 없는 상태(\"3 이 협정은\")로 되어 있어 원문 그대로 옮김. 이 장에 각주가 있으나 조문 본문만 수록함.",
+    "baseline_date": "2022-02-01 발효 (사용자 제공 협정문 기준)"
   }
 ]

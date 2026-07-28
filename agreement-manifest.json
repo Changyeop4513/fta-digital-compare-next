@@ -1,6 +1,6 @@
 {
   "확인일": "2026-07-28",
-  "파일수": 70,
+  "파일수": 72,
   "files": [
     {
       "file": "1. 한-칠레 FTA_Full_Agreement_eng.pdf",
@@ -421,6 +421,18 @@
       "agreement": "RCEP",
       "bytes": 526072,
       "sha256": "e05fab7faebff0137d8b93b0dade6254acfa7f50d06bb677003c75d6220ce690"
+    },
+    {
+      "file": "RCEP 17 Chapter 17_GENERAL PROVISIONS AND EXCEPTIONS_eng.pdf",
+      "agreement": "RCEP",
+      "bytes": 97093,
+      "sha256": "eb0f4ff66e104757e30e5eadc7c9a0303ba85fbf89cf6460be2aae259550d4db"
+    },
+    {
+      "file": "RCEP 17 Chapter 17_GENERAL PROVISIONS AND EXCEPTIONS_kor.pdf",
+      "agreement": "RCEP",
+      "bytes": 429305,
+      "sha256": "ce8ef21b45f36166b5cafd93cca5a1466130d1984c6abb50ebefcd9f06d8fc57"
     }
   ]
 }
