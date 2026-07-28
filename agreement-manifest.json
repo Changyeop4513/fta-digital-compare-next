@@ -1,6 +1,6 @@
 {
   "확인일": "2026-07-28",
-  "파일수": 66,
+  "파일수": 68,
   "files": [
     {
       "file": "1. 한-칠레 FTA_Full_Agreement_eng.pdf",
@@ -397,6 +397,18 @@
       "agreement": "호주",
       "bytes": 16108874,
       "sha256": "a154ccda9efe88bba6a6dc175c7e528d325d2c8fd6e7229d54505c305231299a"
+    },
+    {
+      "file": "RCEP 12 Chapter 12_ELECTRONIC COMMERCE_eng.pdf",
+      "agreement": "RCEP",
+      "bytes": 95639,
+      "sha256": "df2e0e27b0135092208a77177b190d418b41c7ef9d67df797def2316c67879ad"
+    },
+    {
+      "file": "RCEP 12 Chapter 12_ELECTRONIC COMMERCE_kor.pdf",
+      "agreement": "RCEP",
+      "bytes": 526072,
+      "sha256": "e05fab7faebff0137d8b93b0dade6254acfa7f50d06bb677003c75d6220ce690"
     }
   ]
 }
