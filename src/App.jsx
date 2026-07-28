@@ -131,16 +131,23 @@ export default function App() {
               </a>
             </h1>
             <p className="app-subtitle">
-              재정경제부 소관 디지털 통상 3개 주제(전자적 전송물 무관세 · 특송화물 · 종이 없는 무역)를 협정별로 나란히 비교합니다.
+              재정경제부 소관 디지털 통상 주제를 협정별로 나란히 비교합니다.
             </p>
           </div>
         </div>
       </header>
 
       <main className="app-main">
-        {/* ② 컨트롤 바 — 주제 선택 + 협정 선택. 이후 검색이 추가된다. */}
-        <section className="control-bar">
+        {/* ②-1 주제 바 — 이것만 화면 상단에 고정한다.
+            주제는 읽는 내내 "지금 무엇을 보고 있는지"를 알려주고 자주 바꾸는 것이라 고정하지만,
+            협정 선택·검색·인쇄는 한 번 정하고 나면 계속 볼 필요가 없어 함께 고정하면
+            조항 읽을 자리만 좁아진다. (첨부 화면에서 비교 뷰가 절반밖에 안 되던 원인) */}
+        <section className="topic-bar">
           <TopicSelector selectedTopic={selectedTopic} onSelect={setSelectedTopic} />
+        </section>
+
+        {/* ②-2 컨트롤 바 — 협정 선택 + 검색 + 인쇄. 스크롤하면 위로 지나간다. */}
+        <section className="control-bar">
           <AgreementSelector
             availability={availability}
             selectedAgreements={selectedAgreements}
