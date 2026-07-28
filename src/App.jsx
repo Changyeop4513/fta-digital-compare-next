@@ -146,9 +146,13 @@ export default function App() {
             selectedAgreements={selectedAgreements}
             onToggle={toggleAgreement}
           />
-          <SearchBar keyword={keyword} onChange={setKeyword} />
-          {/* ⑤ 내보내기 — 현재 비교 결과를 인쇄하거나 PDF로 저장 */}
-          <PrintButton disabled={nothingToPrint} onPrint={handlePrint} />
+          {/* 검색창과 인쇄 버튼을 한 줄에 둔다 — 주제가 7개가 되면서 컨트롤 바가 길어져,
+              인쇄 버튼이 혼자 한 줄을 쓰면 sticky 바가 화면 절반을 넘는다. */}
+          <div className="control-row">
+            <SearchBar keyword={keyword} onChange={setKeyword} />
+            {/* ⑤ 내보내기 — 현재 비교 결과를 인쇄하거나 PDF로 저장 */}
+            <PrintButton disabled={nothingToPrint} onPrint={handlePrint} />
+          </div>
         </section>
 
         {/* 인쇄물 머리글 — 화면에서는 숨겨져 있고 인쇄에서만 나온다.

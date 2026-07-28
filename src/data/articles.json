@@ -448,5 +448,14 @@
     "text_ko": "1. 전자지급, 특히 비은행, 비금융기관 및 핀테크 기업이 제공하는 전자지급의 급속한 성장을 촉진하기 위하여, 양 당사국은 다음에 의한 것을 포함하여 국경 간 전자지급을 위한 효율적이고 안전하며 안정적인 환경을 발전시키는 것이 중요함을 인정한다.\n가. 전자지급을 위하여 국제적으로 인정된 표준의 채택 및 사용 강화\n나. 전자지급 인프라의 상호운용성 및 상호연결성 촉진, 그리고\n다. 전자지급 서비스에서 혁신과 경쟁 장려\n2. 이러한 목적으로 각 당사국은\n가. 규제 승인, 면허 요건, 절차 및 기술표준과 관련된 것을 포함하여 전자지급에 대한 규제를 공개한다.\n나. 규제 또는 면허 승인에 대한 결정을 시의적절하게 완료하도록 노력한다.\n다. 전자지급 시스템 운영에 필요한 서비스 및 인프라에 대한 접근과 관련하여 금융기관과 비금융기관 간에 자의적으로 또는 부당하게 차별하지 않는다.\n라. 관련된 전자지급 시스템에 대하여, 전자지급 시스템 간 상호운용성을 증대시킬 수 있도록, 금융기관 및 서비스 공급자 간 전자 데이터 교환을 위한 전자지급 메시지에 대한 국제적인 표준을 채택한다.\n마. 응용 프로그래밍 인터페이스(“API”)를 통하여 제공되는 도구 및 프로토콜과 같은 개방형 플랫폼 및 구조의 사용을 촉진하고 전자지급에서 보다 높은 상호운용성, 혁신 및 경쟁을 촉진하기 위하여, 가능한 경우, 결제 서비스 제공자가 자신의 제품 및 서비스용 API를 제3자가 안전하고 안정적으로 이용 가능하게 하도록 장려한다. 그리고\n바. 규제 및 산업 샌드박스 채택과 같은 방식을 통하여 혁신과 경쟁 그리고 새로운 금융 및 전자지급 상품과 서비스의 도입을 시의적절하게 촉진한다.\n3. 제1항을 고려하여, 양 당사국은 규제를 통하여 전자지급 시스템에서 안전성, 효율성, 신뢰 및 보안성 유지의 중요성을 인정하고, 규제 및 정책의 채택과 집행은 지급 서비스 제공자가 부담하는 위험에 비례해야 할 것임을 인정한다.",
     "source": "한-싱가포르 DPA(디지털동반자협정) 제14장(디지털 경제) 제14.11조 — 산업통상자원부 FTA 포털 게재 공식 협정문 PDF(국문 KSDPA_kor.pdf · 영문 KSDPA_eng.pdf)에서 추출. 제1항(가~다호)·제2항(가~바호)·제3항 전문 수록. 각주 없음.",
     "baseline_date": "2023-01-14 발효 (산업통상자원부 FTA 포털 게재 협정문 기준)"
+  },
+  {
+    "agreement": "DEPA",
+    "topic": "government_procurement",
+    "article_no": "제8.3조 (Government Procurement / 정부조달)",
+    "text_en": "1. The Parties recognise that the digital economy will have an impact on government procurement and affirm the importance of open, fair and transparent government procurement markets.\n2. To this end, the Parties shall undertake cooperation activities in relation to understanding how greater digitisation of procurement processes and goods and services impacts on existing and future international government procurement commitments.",
+    "text_ko": "1. 당사자들은 디지털 경제가 정부조달에 영향을 미칠 수 있음을 인정하고, 개방적이고 공정하며 투명한 정부조달 시장이 중요함을 확인한다.\n2. 이러한 목적으로 당사자들은 조달 절차와 상품 및 서비스의 디지털화가 기존 및 미래의 국제적인 정부조달 약속에 얼마나 큰 영향을 미칠지를 이해하는 것과 관련한 협력 활동을 수행한다.",
+    "source": "DEPA(디지털경제동반자협정) 제8모듈(최신 동향 및 기술) 제8.3조 — 사용자 제공 공식 협정문 PDF(국문·영문)에서 추출. 제1항·제2항 전문 수록. 각주 없음. ※ 이 주제는 「디지털 경제와 관련된 정부조달 조항」만 대상으로 하며, 전통 FTA의 정부조달 장(章)은 대상이 아니다.",
+    "baseline_date": "2024-05-03 한국 가입 발효 (산업통상자원부 FTA 포털 게재 협정문 기준)"
   }
 ]

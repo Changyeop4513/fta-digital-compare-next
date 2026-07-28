@@ -159,10 +159,11 @@ body {
   border: 1px solid #b7c0dc;
   background-color: #ffffff;
   color: var(--navy);
-  padding: 8px 18px;
+  /* 주제가 7개라 알약이 두 줄이 된다. 여백을 조금 줄여 sticky 바 높이를 아낀다. */
+  padding: 7px 14px;
   border-radius: 20px;
   cursor: pointer;
-  font-size: 14px;
+  font-size: 13.5px;
   transition: all 0.12s ease;
 }
 
@@ -680,13 +681,24 @@ body {
 
 /* --- 인쇄 / PDF 저장 --- */
 
-/* 컨트롤 바 안의 인쇄 버튼 자리. 다른 컨트롤과 구분되도록 위에 경계선을 둔다. */
+/* 검색창 + 인쇄 버튼을 한 줄에. 검색창이 남는 폭을 다 쓰고 버튼은 오른쪽 끝에 붙는다.
+   (주제가 7개로 늘어 컨트롤 바가 길어졌으므로 한 줄이라도 아낀다) */
+.control-row {
+  display: flex;
+  align-items: flex-end;
+  gap: 16px;
+}
+
+.control-row .search-bar {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
 .print-action {
-  margin-top: 14px;
-  padding-top: 14px;
-  border-top: 1px solid var(--border);
+  flex: 0 0 auto;
   display: flex;
   justify-content: flex-end;
+  padding-bottom: 2px; /* 검색 입력창 아래선과 눈높이를 맞춘다 */
 }
 
 .print-button {

@@ -12,7 +12,15 @@ export const TOPICS = [
   { key: 'paperless_trading', label: 'Paperless trading(종이 없는 무역)' },
   { key: 'e_invoicing', label: 'E-invoicing(전자송장)' },
   { key: 'electronic_payment', label: 'Electronic payments(전자지급)' },
+  { key: 'government_procurement', label: 'Government procurement(정부조달)' },
+  { key: 'taxation_exception', label: 'Taxation exception(과세 예외)' },
 ]
+
+// 〔4차 추가 시 범위 유의〕
+//  - government_procurement 은 **디지털 경제와 관련된 정부조달 조항만** 담는다(사용자 결정).
+//    전통 FTA의 정부조달 '장' 전체를 담으면 한 칸에 조문이 수십 개가 되어 좌우 비교가 무의미해진다.
+//  - taxation_exception 은 협정 전체에 걸리는 **일반 예외** 조항이라 디지털 통상 조항은 아니지만,
+//    재정경제부 소관이라 실무 가치가 커서 24개 협정 전부를 대상으로 수록한다(사용자 결정).
 
 // props:
 //  - selectedTopic: 현재 선택된 주제 key
