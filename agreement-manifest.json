@@ -1,0 +1,390 @@
+{
+  "확인일": "2026-07-28",
+  "파일수": 64,
+  "files": [
+    {
+      "file": "1. 한-칠레 FTA_Full_Agreement_eng.pdf",
+      "agreement": "칠레",
+      "bytes": 545885,
+      "sha256": "d039a6f037036d7dc0a464315f5487706fdf59c1a3166e5a79e2ab31710a06a6"
+    },
+    {
+      "file": "1. 한-칠레 FTA_Full_Agreement_kor.pdf",
+      "agreement": "칠레",
+      "bytes": 6597971,
+      "sha256": "ae4cdaeade2f626f95a4fde0cea2da296d9fd7d925446291f99e6adc1962fbce"
+    },
+    {
+      "file": "10. 한-캐나다 FTA ko_ca_eng.pdf",
+      "agreement": "캐나다",
+      "bytes": 2786916,
+      "sha256": "248ce954a0a3e83b1673562728ce40e3122565987c20e8829bc984ea11695a04"
+    },
+    {
+      "file": "10. 한-캐나다 FTA ko_ca_kor.pdf",
+      "agreement": "캐나다",
+      "bytes": 4078961,
+      "sha256": "e2bd9c6cea5a07f7818ae06abdc1f8841643bbdb2156a57356d483e23c1909ee"
+    },
+    {
+      "file": "11. 한-EU FTA 00_3_Fulltext_kor.pdf",
+      "agreement": "EU",
+      "bytes": 8883207,
+      "sha256": "c95e13f4d63e4058e277fa0ce21327dab6b512e15c6e5a79111f8b87af772283"
+    },
+    {
+      "file": "11. 한-EU FTA Full_Text_eng.pdf",
+      "agreement": "EU",
+      "bytes": 7740587,
+      "sha256": "cdbf4a899ddbb8ea37f2f10d02fb22cabdb4dba8b144341625668763dcccf5ef"
+    },
+    {
+      "file": "12. 한-중국 FTA kr_cn_eng.pdf",
+      "agreement": "중국",
+      "bytes": 11568283,
+      "sha256": "9d510650af2d951d559e38b31b07f25cb2e5e62d8800b5ff160ed56aa3421391"
+    },
+    {
+      "file": "12. 한-중국 FTA kr_cn_kor.pdf",
+      "agreement": "중국",
+      "bytes": 22104879,
+      "sha256": "d7f3bcbfb1c58db10626b814e4c42ccb0d44f676d6ec73d82326142cb6c98ad1"
+    },
+    {
+      "file": "13. 한-뉴질랜드 FTA KR_NZ_FULL_ENG.pdf",
+      "agreement": "뉴질랜드",
+      "bytes": 14543978,
+      "sha256": "b085e3ca729d3d5572aa58ba1c78a86db7745830d02e95340fd02e27a9eaf9a2"
+    },
+    {
+      "file": "13. 한-뉴질랜드 FTA KR_NZ_FULL_KOR.pdf",
+      "agreement": "뉴질랜드",
+      "bytes": 15630688,
+      "sha256": "151a56c9351a1c216abfb3dd6f1a4b209bc6fbd39e237c304b3841dec3c5443e"
+    },
+    {
+      "file": "14. 한-베트남 FTA 1_ko_vn_kor.pdf",
+      "agreement": "베트남",
+      "bytes": 21028632,
+      "sha256": "350cbc8cecb2c7c7a1eb6d3bb9c3892bbaf9a95cb9e0c625a447f32a7a33c1df"
+    },
+    {
+      "file": "14. 한-베트남 FTA 2_ko_vn_eng.pdf",
+      "agreement": "베트남",
+      "bytes": 18399664,
+      "sha256": "53041efa01f7922e080143285f764d7c30f06be1a3ae376715f38459326c4341"
+    },
+    {
+      "file": "15. 한-콜롬비아 FTA 1_kor_col_agreement_kr.pdf",
+      "agreement": "콜롬비아",
+      "bytes": 15933604,
+      "sha256": "b8ff74bb805da0bcaccc43f460a0a53e63376a039e7283d7ff369983d0d52114"
+    },
+    {
+      "file": "15. 한-콜롬비아 FTA 2_kor_col_agreement_en.pdf",
+      "agreement": "콜롬비아",
+      "bytes": 8383080,
+      "sha256": "47a147745ba6d414767c48537389d75f04739bb91725b5ad52a3d988ca57a818"
+    },
+    {
+      "file": "16. 한-영국 FTA full_agreement_en.pdf",
+      "agreement": "영국",
+      "bytes": 6676408,
+      "sha256": "18e04fdfae20b38b8f32a796e684e1a17e7c7d8e4351d07bf414725a4df50f40"
+    },
+    {
+      "file": "16. 한-영국 FTA full_agreement_kr.pdf",
+      "agreement": "영국",
+      "bytes": 10043568,
+      "sha256": "f0d9a966bb85cedbae331f20690ff437176c89a241493d0f822f87b5802b777d"
+    },
+    {
+      "file": "17. 한-중미 FTA full_agreement_eng.pdf",
+      "agreement": "중미",
+      "bytes": 44050803,
+      "sha256": "5df38d354d527f858c5b4ce8d14f51c845d8f1013884fe5317a33629caf691ce"
+    },
+    {
+      "file": "17. 한-중미 FTA full_agreement_kor.pdf",
+      "agreement": "중미",
+      "bytes": 54142848,
+      "sha256": "66ff00ee32bc61c35a22d3c83411a5366eab9cce3fe6b88cbbc6b0cca72ac3ae"
+    },
+    {
+      "file": "18. 한-이스라엘 FTA kr-il_full_agreement_eng.pdf",
+      "agreement": "이스라엘",
+      "bytes": 14786479,
+      "sha256": "b6277218d99ccf46c891c396b2ad75f1971aef52ba5614bc9edbb65d9dbf612e"
+    },
+    {
+      "file": "18. 한-이스라엘 FTA kr-il_full_agreement_kor.pdf",
+      "agreement": "이스라엘",
+      "bytes": 14138385,
+      "sha256": "8beff55d37fc6f4110a84e077980f260d34731191c4397530a438a939871cf82"
+    },
+    {
+      "file": "19. 한-캄보디아 FTA K-KH_full_agreement_eng.pdf",
+      "agreement": "캄보디아",
+      "bytes": 16074209,
+      "sha256": "26a3d03e511c2af199728df4cbe2abff393da728f6c7d9b7f9dd5013617e9ef5"
+    },
+    {
+      "file": "19. 한-캄보디아 FTA K-KH_full_agreement_kor.pdf",
+      "agreement": "캄보디아",
+      "bytes": 17670134,
+      "sha256": "ad539a0a477d6e24b1e764e4f5dae45386646d8276257f5ad885cd366fcc9faa"
+    },
+    {
+      "file": "2. 한-싱가포르 FTA_KR-SG_Full Agreement_eng.pdf",
+      "agreement": null,
+      "bytes": 1683503,
+      "sha256": "a8785583f7774a61e8542083cba49bcf1a79081e31ee858d919259bc5667d0a2"
+    },
+    {
+      "file": "2. 한-싱가포르 FTA_KR-SG_Full Agreement_kor.pdf",
+      "agreement": null,
+      "bytes": 9214567,
+      "sha256": "a0381d1583e6ab5346f8ef96d3d2e97b464de368a488cc491c8774aca9c863c3"
+    },
+    {
+      "file": "20. 한-인도네시아 CEPA kr-id_full_agreement_eng.pdf",
+      "agreement": "인도네시아",
+      "bytes": 21945250,
+      "sha256": "a84dd2465f4ad41848e40711449eadb4fcfc20bd9ec45a2dee0fc65c4c738eae"
+    },
+    {
+      "file": "20. 한-인도네시아 CEPA kr-id_full_agreement_kor.pdf",
+      "agreement": "인도네시아",
+      "bytes": 23146469,
+      "sha256": "e0a75c755659238c327c8e4157232510409a3173a2bb87642bb8b85dad63b20e"
+    },
+    {
+      "file": "21. 한-싱가포르 DPA KSDPA_eng.pdf",
+      "agreement": "싱가포르 DPA",
+      "bytes": 267482,
+      "sha256": "c1183848e119b7ad2f0362879813090685a6076c045f00d3105ab20289dc0717"
+    },
+    {
+      "file": "21. 한-싱가포르 DPA KSDPA_kor.pdf",
+      "agreement": "싱가포르 DPA",
+      "bytes": 186397,
+      "sha256": "976ce3bdda8a046803889d3d222f5d912390bd8ab6d01bb051db523b7ceccd6b"
+    },
+    {
+      "file": "22. DEPA depa_all_eng.pdf",
+      "agreement": "DEPA",
+      "bytes": 680817,
+      "sha256": "587f8d22b561aff72dc1b8d38bb66cccb6236eb451948ac41a4d2aed22d25253"
+    },
+    {
+      "file": "22. DEPA depa_all_kor.pdf",
+      "agreement": "DEPA",
+      "bytes": 660759,
+      "sha256": "b490d9cf43d07e44886a9e1398404d84ae080a24731fa838a72833b789353c1e"
+    },
+    {
+      "file": "22. DEPA depa_protocol_eng.pdf",
+      "agreement": "DEPA",
+      "bytes": 253035,
+      "sha256": "7b825cf7a58d9c69ede04941f614f66b2e9295a4074fbf1b796a3ebaf56f7c7f"
+    },
+    {
+      "file": "22. DEPA depa_protocol_kor.pdf",
+      "agreement": "DEPA",
+      "bytes": 158952,
+      "sha256": "0c2f41494c5316481d322965357c95cb29b703137c17bef02fa900aaa1942cd8"
+    },
+    {
+      "file": "23. 한-필리핀 FTA kr-ph_full_agreement_eng.pdf",
+      "agreement": "필리핀",
+      "bytes": 7378188,
+      "sha256": "724bd0ddaf3abbf4543c7e140ab10ae570b24c234f9808182dba086b5e8503c3"
+    },
+    {
+      "file": "23. 한-필리핀 FTA kr-ph_full_agreement_kor.pdf",
+      "agreement": "필리핀",
+      "bytes": 8028937,
+      "sha256": "a09ac3bd32a2871e2a66be79d2cef7ba7c35e91e0e808e8ab062f3486420dda3"
+    },
+    {
+      "file": "24. 한-UAE CEPA Full_Agreement_Eng.pdf",
+      "agreement": "UAE",
+      "bytes": 3761345,
+      "sha256": "bf49ce6bc6b368103149aaa3d142efe1df220ab69132be8be68af9037b110a85"
+    },
+    {
+      "file": "24. 한-UAE CEPA Full_Agreement_Kor.pdf",
+      "agreement": "UAE",
+      "bytes": 4612569,
+      "sha256": "81806cadc658871a602906dfa0094c1df9f976094d0875ed4a1f556a6d894859"
+    },
+    {
+      "file": "25. 한-에콰도르 SECA k-ec_full_agreement_eng.pdf",
+      "agreement": null,
+      "bytes": 13240568,
+      "sha256": "8d010b7b8865be49d19b2a8d34b0c67cb2d0cd921385bb92a1f199c23acc6740"
+    },
+    {
+      "file": "25. 한-에콰도르 SECA k-ec_full_agreement_kor.pdf",
+      "agreement": null,
+      "bytes": 8006437,
+      "sha256": "83ebb596e512183ae81ced04aa03bb8f0dafd21a54319527a23e543da6a35d00"
+    },
+    {
+      "file": "26. 한-GCC FTA full_agreement_Eng.pdf",
+      "agreement": null,
+      "bytes": 12273958,
+      "sha256": "b78c7a1869590b3347067b6c0194bb0a4f3bbc1a233fe4dfae14d2a942d45d4a"
+    },
+    {
+      "file": "26. 한-GCC FTA full_agreement_Kor.pdf",
+      "agreement": null,
+      "bytes": 6374907,
+      "sha256": "83008e2033873c4887bed7bb29688e3ed7e75eab9b220114763db24e4dd2db95"
+    },
+    {
+      "file": "27. 한-조지아 CEPA 9. KR-GEORGIA CEPA-Digital_Trade_eng.pdf",
+      "agreement": null,
+      "bytes": 281633,
+      "sha256": "e2b1a83ff54bf9fd27c22174876e9c37ade0553d4f8bf1e6cbc749510e5290fc"
+    },
+    {
+      "file": "27. 한-조지아 CEPA 9. KR-GEORGIA CEPA-Digital_Trade_kor.pdf",
+      "agreement": null,
+      "bytes": 145184,
+      "sha256": "5badd6ac66c866f93bedbc87f89d4a014d7dcd9f13efbf409551a20f9ca60b45"
+    },
+    {
+      "file": "28. 한-EU DTA kedta_full_agreement_eng.pdf",
+      "agreement": null,
+      "bytes": 286487,
+      "sha256": "078a3eefbd7b97bf61bc08b3bf2fd6ec66e9c4123d2a523ee994a3d5aa3b706e"
+    },
+    {
+      "file": "28. 한-EU DTA kedta_full_agreement_kor.pdf",
+      "agreement": null,
+      "bytes": 249520,
+      "sha256": "3e66276decdbecfcef911b9460820017609da32bc764955e1426df147a4d4706"
+    },
+    {
+      "file": "29. 한-말레이시아 FTA 12. KR-MY_Digital Trade_eng.pdf",
+      "agreement": null,
+      "bytes": 273348,
+      "sha256": "9f7820d39ca0d74a771c43625d38163b5441103ee33e8d236b5d39d9c2435c86"
+    },
+    {
+      "file": "29. 한-말레이시아 FTA 12. KR-MY_Digital Trade_kor.pdf",
+      "agreement": null,
+      "bytes": 169094,
+      "sha256": "323a25c0a9fa98a506cbbe9736f7b38a898bc1edcc21cf86a639cc3f23a6c8ba"
+    },
+    {
+      "file": "3. 한-EFTA FTA KR-EFTA_Full_Agreement_eng.pdf",
+      "agreement": "EFTA",
+      "bytes": 1809353,
+      "sha256": "83605c10d99b67e08420c96a82b24142f08f756eec79f7172b5e3221fdfc989c"
+    },
+    {
+      "file": "3. 한-EFTA FTA KR-EFTA_Full_Agreement_kor.pdf",
+      "agreement": "EFTA",
+      "bytes": 1363147,
+      "sha256": "c22c910a8e7265b4c36f6ec86c10557f04a9b7aa72fb7247ef9c892203ec7cbe"
+    },
+    {
+      "file": "4. 한-ASEAN FTA KOR-ASEAN_Full_Agreement_eng.pdf",
+      "agreement": "ASEAN",
+      "bytes": 6045852,
+      "sha256": "4c2dada367dc36f77bef1eae2eeda2e947f02f234367a04bb8f42dc26f9857c7"
+    },
+    {
+      "file": "4. 한-ASEAN FTA KOR-ASEAN_Full_Agreement_kor.pdf",
+      "agreement": "ASEAN",
+      "bytes": 323838,
+      "sha256": "be0d28ee1b561fa4fb986bea44ed3971905ef5f3f7b406b679ddcdfb7ffd24c6"
+    },
+    {
+      "file": "5. 한-인도 CEPA ALL_OF_CEPA_eng.pdf",
+      "agreement": "인도",
+      "bytes": 4767419,
+      "sha256": "6c183d28f8943d076f0fd055c0c01a65b4996f4d91d1e1e4d90323ce63485e42"
+    },
+    {
+      "file": "5. 한-인도 CEPA ALL_OF_CEPA_kor.pdf",
+      "agreement": "인도",
+      "bytes": 5133703,
+      "sha256": "87e63a3a31ed788223ceff8965436496c560fac6d583208bd6c3d3fcab492fc8"
+    },
+    {
+      "file": "6. 한-페루 FTA pe_all_eng.pdf",
+      "agreement": "페루",
+      "bytes": 10544210,
+      "sha256": "63c01396ddd7df678c84598dab746129d53abb115649eaaa488b2f290e00a15e"
+    },
+    {
+      "file": "6. 한-페루 FTA pe_all_kor.pdf",
+      "agreement": "페루",
+      "bytes": 17793759,
+      "sha256": "5831dfb756405f0ffe531dde532f8ce88e983f38ad679ae0aee763989a0b63b4"
+    },
+    {
+      "file": "7. 한-미국 FTA kr-us_Fulltext_eng.pdf",
+      "agreement": "미국",
+      "bytes": 6226881,
+      "sha256": "f4071156782f39653ab5392bb3edc2de809f15d456784e96ece76273afb838d6"
+    },
+    {
+      "file": "7. 한-미국 FTA kr-us_Fulltext_kor.pdf",
+      "agreement": "미국",
+      "bytes": 8681292,
+      "sha256": "6301255f3746d25a3a39a63bf43ef7bb9068cc58ea0f05cc9e2b606a46882190"
+    },
+    {
+      "file": "8. 한-튀르키예 FTA 001_framework_tr_eng.pdf",
+      "agreement": "튀르키예",
+      "bytes": 426074,
+      "sha256": "65d9cbc3471422812589c2a370fd111998aef0bd4513c4d1352985ef7b1fb34e"
+    },
+    {
+      "file": "8. 한-튀르키예 FTA 001_framework_tr_kr.pdf",
+      "agreement": "튀르키예",
+      "bytes": 531393,
+      "sha256": "f9b9367d3422d121ce796358eaa9d93e7b47477c33b5e6e4335a764ac0565fdd"
+    },
+    {
+      "file": "8. 한-튀르키예 FTA 상품 03_Goods_tr_kr.pdf",
+      "agreement": "튀르키예",
+      "bytes": 2720104,
+      "sha256": "4953a625eecc20791f1a583dcde577a8396eb5bc56e4fdc80e6695996cd47e12"
+    },
+    {
+      "file": "8. 한-튀르키예 FTA 상품 04_Goods_tr_eg.pdf",
+      "agreement": "튀르키예",
+      "bytes": 814351,
+      "sha256": "feffcb50272f7a511bbd2955dd7fdde2d9e3248b842e352895c457947039f29f"
+    },
+    {
+      "file": "8. 한-튀르키예 FTA 서비스 14_Agreement_on_Trade_in_Services_tr_kr.pdf",
+      "agreement": "튀르키예",
+      "bytes": 254009,
+      "sha256": "90b46f83a4ae103727415858a83cdfabd74928aac2020755bfbc1453d6876ec1"
+    },
+    {
+      "file": "8. 한-튀르키예 FTA 서비스 15_Agreement_on_Trade_in_Services_tr_eg.pdf",
+      "agreement": "튀르키예",
+      "bytes": 351746,
+      "sha256": "db3306a2b67da36afcea99e20c0b0735cc7ce1caa666e621e22df4a72ad7d8d3"
+    },
+    {
+      "file": "9. 한-호주 FTA ko_au_eng.pdf",
+      "agreement": "호주",
+      "bytes": 12181194,
+      "sha256": "a6b960151ef3a6e16e348b997afcf38428a3921a358f76126eee334781dbf56e"
+    },
+    {
+      "file": "9. 한-호주 FTA ko_au_kor.pdf",
+      "agreement": "호주",
+      "bytes": 16108874,
+      "sha256": "a154ccda9efe88bba6a6dc175c7e528d325d2c8fd6e7229d54505c305231299a"
+    }
+  ]
+}
