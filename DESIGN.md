@@ -192,7 +192,7 @@ PC 넓은 화면 기준, 위에서 아래로 4개 영역이 쌓인다. **① 헤
 App                          (전체를 감싸고 공유 상태를 관리)
 ├─ <header>                  ① 로고 + 제목        ← App 내부 마크업(별도 컴포넌트 아님)
 ├─ <section .control-bar>    ② 컨트롤 바 묶음 (sticky) ← App 내부 마크업
-│  ├─ TopicSelector          · 주제 5개 중 1개 (네이티브 라디오)                 〔3차 확대〕
+│  ├─ TopicSelector          · 주제 7개 중 1개 (네이티브 라디오)                 〔4차 확대〕
 │  ├─ AgreementSelector      · 선택 칩 + "＋ 협정 추가" 버튼          〔v2.0 개편〕
 │  │  └─ AgreementPicker     · 추가 패널: 이름 검색 + 있음만 보기 + 목록  〔v2.0 신규〕
 │  ├─ SearchBar              · 원문 키워드 검색창
@@ -205,6 +205,10 @@ App                          (전체를 감싸고 공유 상태를 관리)
 └─ EmptyState                화면 전체 예외 안내 (협정 0개 / 원문 검색 0건)
 ```
 
+> **〔4차 변경〕 상단 고정은 「주제 바」 하나뿐이다.** 주제가 7개로 늘자 컨트롤 바 전체를 고정하니 **조항 읽을 자리가 화면 절반밖에 남지 않았다.** 그래서 `App.jsx` 안에서 **`<section className="topic-bar">`(sticky)** 와 **`<section className="control-bar">`(일반)** 두 카드로 나눴다. 협정 선택·검색·인쇄는 스크롤에 딸려 올라간다.
+> - 한 카드 안에서 자식만 sticky로 만들면 **부모가 화면을 벗어날 때 같이 사라지므로** 카드 분리가 필요했다.
+> - 결과: 고정 영역 **310px → 105px(15%)**, 조항 영역 **85%**. 주제를 더 추가하더라도 **조항 영역이 70% 아래로 내려가지 않게** 유지할 것.
+>
 > **〔v2.1 정정〕 헤더와 컨트롤 바는 별도 컴포넌트가 아니다.** `App.jsx` 안의 `<header>`·`<section className="control-bar">` 마크업이다. 상태를 갖지 않고 자리만 잡는 껍데기라 컴포넌트로 분리할 이유가 없었다. **실제 컴포넌트 파일은 11개** — `TopicSelector` · `AgreementSelector` · `AgreementPicker` · `SearchBar` · **`PrintButton`** · **`PrintHeader`** · `AvailabilityBar` · `ComparisonView` · `AgreementColumn` · `ArticleCard` · `EmptyState`. (뒤의 두 개가 3차에서 추가됐다)
 
 **상태(state) 배치**
@@ -257,7 +261,7 @@ App                          (전체를 감싸고 공유 상태를 관리)
    │  ├─ AgreementColumn.jsx      협정 1개 = 세로 칸
    │  ├─ ArticleCard.jsx          조항 카드
    │  └─ EmptyState.jsx           화면 전체 예외 안내
-   ├─ data/articles.json       조항 데이터 (**44건 수록 완료** — 15·15·14)
+   ├─ data/articles.json       조항 데이터 (**72건 수록 완료** — 15·15·14·3·3·1·21) 〔4차 갱신〕
    ├─ assets/                  재정경제부 로고 (원본 + 헤더용 반전본)
    └─ styles/index.css         네이비 공공문서 톤 CSS
 ```
