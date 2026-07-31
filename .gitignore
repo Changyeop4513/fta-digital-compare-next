@@ -36,6 +36,11 @@ trash-can/
 FTA 협정/
 *.pdf
 
+# ===== 검증 도구 중간 산출물 =====
+# scripts/verify/ 도구들이 만드는 쪽 텍스트 캐시·렌더링 이미지·OCR 결과.
+# 전부 PDF에서 재생성 가능하고 용량이 크다.
+.verify-cache/
+
 # ===== 에디터 설정 =====
 .vscode/
 .idea/

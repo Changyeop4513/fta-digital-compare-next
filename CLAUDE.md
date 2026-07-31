@@ -218,6 +218,10 @@ PDF:      HTML 안의 /webmodule/_PSD_FTA/... 경로를 그대로 쓴다
 - **출처 원칙:** 원문은 **정부 공식 1차 출처(협정문 원본 PDF 등)에서 그대로 확보한 것만** 입력한다. **검색엔진 요약·2차 설명 자료를 원문으로 쓰지 않는다** (2026-07 KORUS 제15.3조에서 검색 요약을 넣었다가 실제 원문과 달라 정정한 사례). 확보·검증이 안 되면 값을 비워("번역 없음"/미입력) 둔다.
 - **주석 분리:** 출처·기준일·"미검증/정규화 보정" 같은 메모는 **`source` 필드에만** 적고, `text_en`/`text_ko`에는 원문 외 어떤 표시도 섞지 않는다.
 
+### 원문 검증 도구 〔v3.5 신규〕
+
+아래 절차를 수행하는 **도구 8종이 [`scripts/verify/`](scripts/verify/)에 있다** — 진단(probe-pdf) · 전수 감사(audit-articles) · 쪽 찾기(find-article) · 쪽 추출(layout-page) · 렌더(render-pages.ps1, JBIG2 스캔 포함) · 글줄 분할(split-lines) · 배율 3종 OCR(ocr-lines.ps1) · 낱말 대조(compare-ocr) · 깨진 인코딩 복원(reconstruct). 사용법과 판정 요령은 [`scripts/verify/README.md`](scripts/verify/README.md). **조문을 추가·수정하면 `audit-articles.mjs`를 돌려 자동 감사를 통과시킨다.** 중간 산출물은 `.verify-cache/`(git 제외)에 쌓인다.
+
 ### 깨진 국문 PDF에서 원문을 복원할 때 〔v3.3 신규〕
 
 정부 배포 PDF 중에는 **폰트 인코딩이 깨져** 한글이 추출되지 않는 것이 있다(한-영국·칠레·인도·EU 등). 이때 **OCR로 복원해도 되지만, OCR 결과를 그대로 넣어서는 안 된다.** 아래 3중 검산을 전부 통과한 것만 수록한다.

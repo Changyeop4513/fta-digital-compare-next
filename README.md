@@ -282,6 +282,9 @@
 ├─ index.html               앱 진입 HTML
 ├─ vite.config.js           Vite 설정 + 개발/프리뷰 보안 헤더
 ├─ vercel.json              배포 설정 + 프로덕션 보안 응답 헤더
+├─ scripts/
+│  ├─ agreement-files.mjs   협정문 PDF 지문(SHA-256) 기록·변경 감지
+│  └─ verify/               원문 검증 도구 8종 (전수 감사·OCR·복원 — README 참조)
 └─ src/
    ├─ main.jsx              앱 시작점
    ├─ App.jsx               공유 상태 관리 (주제·협정·검색어·인쇄) + 헤더·주제 바·컨트롤 바 마크업
