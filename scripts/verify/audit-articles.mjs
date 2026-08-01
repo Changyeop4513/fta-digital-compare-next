@@ -36,7 +36,7 @@ const records = JSON.parse(fs.readFileSync(ARTICLES, 'utf8'))
 // 파일명 → 협정 이름. scripts/agreement-files.mjs 와 같은 표를 쓴다.
 const FILE_TO_AGREEMENT = [
   [/한-칠레/, '칠레'], [/한-EFTA/, 'EFTA'], [/한-ASEAN/, 'ASEAN'],
-  [/한-인도 CEPA/, '인도'], [/한-EU DTA/, null], [/한-EU/, 'EU'],
+  [/한-인도 CEPA/, '인도'], [/한-EU DTA/, 'EU DTA'], [/한-EU/, 'EU'],
   [/한-페루/, '페루'], [/한-미국/, '미국'], [/한-튀르키예/, '튀르키예'],
   [/한-호주/, '호주'], [/한-캐나다/, '캐나다'], [/한-중국/, '중국'],
   [/한-뉴질랜드/, '뉴질랜드'], [/한-베트남/, '베트남'], [/한-콜롬비아/, '콜롬비아'],
@@ -44,6 +44,9 @@ const FILE_TO_AGREEMENT = [
   [/한-캄보디아/, '캄보디아'], [/한-인도네시아/, '인도네시아'],
   [/한-싱가포르 DPA/, '싱가포르 DPA'], [/DEPA/, 'DEPA'],
   [/한-필리핀/, '필리핀'], [/한-UAE/, 'UAE'], [/RCEP/, 'RCEP'],
+  // 미발효(서명·타결) 5개 — 2026-08 협정 확장으로 수록 대상에 포함
+  [/한-에콰도르/, '에콰도르'], [/한-GCC/, 'GCC'], [/한-조지아/, '조지아'],
+  [/한-말레이시아/, '말레이시아'],
 ]
 const agreementOf = (f) => FILE_TO_AGREEMENT.find(([re]) => re.test(f))?.[1] ?? null
 
@@ -103,16 +106,23 @@ function chunkMatch(needle, hay) {
 }
 
 // 조문이 있는 쪽을 앞 24자로 찾고, 그 쪽부터 4쪽을 이어 붙여 대조한다.
+// 탐침은 이웃 쪽과 이어 붙여서도 찾는다 — 조문 첫머리가 쪽 경계에 걸치면
+// 한 쪽만 봐서는 못 찾는다(말레이시아 제12.6조에서 실측된 결함).
 function tryMatch(text, pgs, mapFn) {
   const t = mapFn(text)
-  const probe = t.slice(0, 24)
   let best = null
-  for (let i = 0; i < pgs.length; i++) {
-    if (!mapFn(pgs[i]).includes(probe)) continue
-    const hay = mapFn(pgs.slice(i, i + 4).join(''))
-    const m = chunkMatch(t, hay)
-    if (!best || (m.ok && !best.m.ok) || (m.ok && best.m.ok && m.chunks < best.m.chunks)) best = { page: i + 1, m }
-    if (m.ok && m.chunks <= 6) break
+  // 탐침 24자가 실패하면 12자로 줄여 다시 찾는다 — 조문 첫머리에 각주 마커가
+  // 끼어 있으면(말레이시아 제4.15조 "세관 통제³") 긴 탐침이 통째로 실패한다.
+  for (const probeLen of [24, 12]) {
+    const probe = t.slice(0, probeLen)
+    for (let i = 0; i < pgs.length; i++) {
+      if (!mapFn(pgs[i] + (pgs[i + 1] ?? '')).includes(probe)) continue
+      const hay = mapFn(pgs.slice(i, i + 4).join(''))
+      const m = chunkMatch(t, hay)
+      if (!best || (m.ok && !best.m.ok) || (m.ok && best.m.ok && m.chunks < best.m.chunks)) best = { page: i + 1, m }
+      if (m.ok && m.chunks <= 6) break
+    }
+    if (best?.m.ok) break
   }
   return best
 }

@@ -24,7 +24,7 @@ const ARTICLES = path.join(ROOT, 'src/data/articles.json')
 // 목적: 파일이 바뀌었을 때 "어느 협정의 몇 건이 영향을 받는지" 바로 알려주기 위함.
 const FILE_TO_AGREEMENT = [
   [/한-칠레/, '칠레'], [/한-EFTA/, 'EFTA'], [/한-ASEAN/, 'ASEAN'],
-  [/한-인도 CEPA/, '인도'], [/한-EU DTA/, null], [/한-EU/, 'EU'],
+  [/한-인도 CEPA/, '인도'], [/한-EU DTA/, 'EU DTA'], [/한-EU/, 'EU'],
   [/한-페루/, '페루'], [/한-미국/, '미국'], [/한-튀르키예/, '튀르키예'],
   [/한-호주/, '호주'], [/한-캐나다/, '캐나다'], [/한-중국/, '중국'],
   [/한-뉴질랜드/, '뉴질랜드'], [/한-베트남/, '베트남'], [/한-콜롬비아/, '콜롬비아'],
@@ -32,11 +32,14 @@ const FILE_TO_AGREEMENT = [
   [/한-캄보디아/, '캄보디아'], [/한-인도네시아/, '인도네시아'],
   [/한-싱가포르 DPA/, '싱가포르 DPA'], [/DEPA/, 'DEPA'],
   [/한-필리핀/, '필리핀'], [/한-UAE/, 'UAE'], [/RCEP/, 'RCEP'],
+  // 미발효(서명·타결) 5개 — 2026-08 협정 확장으로 수록 대상에 포함
+  [/한-에콰도르/, '에콰도르'], [/한-GCC/, 'GCC'], [/한-조지아/, '조지아'],
+  [/한-말레이시아/, '말레이시아'],
 ]
 
 function agreementOf(fileName) {
   for (const [re, name] of FILE_TO_AGREEMENT) if (re.test(fileName)) return name
-  return null // 미발효 서명 협정(에콰도르·GCC·조지아·말레이시아 등)과 대상 외 파일
+  return null // 대상 외 파일 (세르비아 등 협정문 미확보 협정)
 }
 
 function scan() {

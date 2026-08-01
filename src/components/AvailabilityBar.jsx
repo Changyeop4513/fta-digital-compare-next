@@ -6,7 +6,7 @@
 //  - "있음"만 기본 노출하고 "없음"은 접어 둔다 (숨기는 게 아니라 접는 것 — 없음도 정보다)
 //  - 배지를 누르면 바로 비교 대상에 추가/해제된다 (기능 3 → 기능 1 직결)
 import { useState } from 'react'
-import { MAX_SELECTION } from '../constants.js'
+import { MAX_SELECTION, UNRATIFIED } from '../constants.js'
 
 // props:
 //  - topicLabel: 현재 주제의 화면 표시명
@@ -25,6 +25,11 @@ export default function AvailabilityBar({
   const unavailableList = availability.filter((a) => !a.available)
   const isFull = selectedAgreements.length >= MAX_SELECTION
 
+  // 미발효(서명·타결) 협정은 발효 협정과 시각적으로 갈라 둔다 — 문안이 확정이 아니기 때문.
+  // 개수 요약("N개 보유")은 두 그룹을 합쳐 세되, 배지는 그룹별로 나눠 그린다.
+  const effectiveAvail = availableList.filter((a) => !UNRATIFIED.has(a.agreement))
+  const unratifiedAvail = availableList.filter((a) => UNRATIFIED.has(a.agreement))
+
   // 배지 하나를 그린다. 있음 배지는 눌러서 비교 대상에 넣을 수 있고, 없음 배지는 표시 전용이다.
   function renderBadge({ agreement, available }) {
     const selected = selectedAgreements.includes(agreement)
@@ -37,19 +42,21 @@ export default function AvailabilityBar({
           'availability-badge' +
           (available ? ' is-available' : ' is-unavailable') +
           (selected ? ' is-selected' : '') +
-          (disabled ? ' is-disabled' : '')
+          (disabled ? ' is-disabled' : '') +
+          (UNRATIFIED.has(agreement) ? ' is-unratified' : '')
         }
         disabled={disabled}
         aria-pressed={available ? selected : undefined}
         onClick={() => available && onToggle(agreement)}
         title={
-          !available
+          (UNRATIFIED.has(agreement) ? '미발효(서명·타결) 협정 — 문안 변동 가능. ' : '') +
+          (!available
             ? '이 협정에는 해당 조항이 없습니다'
             : selected
               ? '비교에서 제외'
               : isFull
                 ? `최대 ${MAX_SELECTION}개까지 비교할 수 있습니다`
-                : '비교에 추가'
+                : '비교에 추가')
         }
       >
         {/* 배지에는 협정 이름만 표시한다.
@@ -74,7 +81,19 @@ export default function AvailabilityBar({
       {availableList.length === 0 ? (
         <p className="availability-none">이 주제의 조항을 가진 협정이 아직 없습니다.</p>
       ) : (
-        <div className="availability-badges">{availableList.map(renderBadge)}</div>
+        <>
+          {effectiveAvail.length > 0 && (
+            <div className="availability-badges">{effectiveAvail.map(renderBadge)}</div>
+          )}
+          {unratifiedAvail.length > 0 && (
+            <div className="availability-unratified-group">
+              <span className="availability-group-label">
+                미발효(서명·타결) — 문안 변동 가능
+              </span>
+              <div className="availability-badges">{unratifiedAvail.map(renderBadge)}</div>
+            </div>
+          )}
+        </>
       )}
 
       {unavailableList.length > 0 && (

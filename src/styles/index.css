@@ -430,6 +430,24 @@ body {
   line-height: 1.5;
 }
 
+/* 미발효(서명·타결) 협정 — 발효 협정의 확정 문안과 오해되지 않게 구분한다.
+   목록에서는 그룹 표지로 가르고, 항목·배지는 점선 테두리로 표시한다. */
+.picker-group-label {
+  margin: 10px 0 4px;
+  padding-top: 8px;
+  border-top: 1px dashed var(--line);
+  font-size: 11.5px;
+  font-weight: 700;
+  color: #8a6d1a;
+}
+
+.picker-item.is-unratified .picker-item-name::after {
+  content: ' 미발효';
+  font-size: 11px;
+  font-weight: 700;
+  color: #8a6d1a;
+}
+
 .picker-empty-hint {
   color: var(--navy);
 }
@@ -538,6 +556,25 @@ body {
 
 .availability-unavailable {
   margin-top: 10px;
+}
+
+/* 미발효(서명·타결) 배지 그룹 — 발효 협정 배지 아래 점선 위 라벨과 함께 나온다 */
+.availability-unratified-group {
+  margin-top: 10px;
+  padding-top: 8px;
+  border-top: 1px dashed var(--line);
+}
+
+.availability-group-label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 11.5px;
+  font-weight: 700;
+  color: #8a6d1a;
+}
+
+.availability-badge.is-unratified {
+  border-style: dashed;
 }
 
 .availability-toggle {

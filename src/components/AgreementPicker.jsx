@@ -6,7 +6,7 @@
 //  - 최대 4개가 차면 미선택 항목은 추가할 수 없다
 //  - 검색 결과 0건은 이 패널 안에만 표시한다 (비교 뷰를 대체하지 않음)
 import { useState, useEffect, useRef } from 'react'
-import { MAX_SELECTION } from '../constants.js'
+import { MAX_SELECTION, UNRATIFIED } from '../constants.js'
 
 // props:
 //  - availability: [{ agreement, available }] — 현재 주제 기준 협정별 조항 유무 (App에서 계산)
@@ -76,18 +76,28 @@ export default function AgreementPicker({ availability, selectedAgreements, onTo
       )}
 
       <ul className="picker-list">
-        {visible.map(({ agreement, available }) => {
+        {visible.map(({ agreement, available }, i) => {
           const selected = selectedAgreements.includes(agreement)
           // 아직 안 골랐는데 이미 4개가 찼으면 추가 불가
           const disabled = !selected && isFull
+          // 발효 협정 구간이 끝나고 미발효 구간이 시작되는 지점에 그룹 표지를 끼운다.
+          // (AGREEMENTS 배열이 발효 → 미발효 순으로 정렬돼 있으므로 경계는 한 번만 나온다)
+          const firstUnratified =
+            UNRATIFIED.has(agreement) && (i === 0 || !UNRATIFIED.has(visible[i - 1].agreement))
           return (
             <li key={agreement}>
+              {firstUnratified && (
+                <div className="picker-group-label" role="presentation">
+                  미발효(서명·타결) — 문안 변동 가능
+                </div>
+              )}
               <button
                 type="button"
                 className={
                   'picker-item' +
                   (selected ? ' is-selected' : '') +
-                  (disabled ? ' is-disabled' : '')
+                  (disabled ? ' is-disabled' : '') +
+                  (UNRATIFIED.has(agreement) ? ' is-unratified' : '')
                 }
                 disabled={disabled}
                 aria-pressed={selected}

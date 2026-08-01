@@ -1,6 +1,6 @@
 {
-  "확인일": "2026-07-28",
-  "파일수": 72,
+  "확인일": "2026-08-01",
+  "파일수": 80,
   "files": [
     {
       "file": "1. 한-칠레 FTA_Full_Agreement_eng.pdf",
@@ -95,8 +95,8 @@
     {
       "file": "16. 한-영국 FTA full_agreement_kr.pdf",
       "agreement": "영국",
-      "bytes": 10043568,
-      "sha256": "f0d9a966bb85cedbae331f20690ff437176c89a241493d0f822f87b5802b777d"
+      "bytes": 10449263,
+      "sha256": "92914de24575c49ef9930676bc433e0729cdd91e48766b97f4a31e77c335dcbd"
     },
     {
       "file": "17. 한-중미 FTA full_agreement_eng.pdf",
@@ -220,63 +220,111 @@
     },
     {
       "file": "25. 한-에콰도르 SECA k-ec_full_agreement_eng.pdf",
-      "agreement": null,
+      "agreement": "에콰도르",
       "bytes": 13240568,
       "sha256": "8d010b7b8865be49d19b2a8d34b0c67cb2d0cd921385bb92a1f199c23acc6740"
     },
     {
       "file": "25. 한-에콰도르 SECA k-ec_full_agreement_kor.pdf",
-      "agreement": null,
+      "agreement": "에콰도르",
       "bytes": 8006437,
       "sha256": "83ebb596e512183ae81ced04aa03bb8f0dafd21a54319527a23e543da6a35d00"
     },
     {
       "file": "26. 한-GCC FTA full_agreement_Eng.pdf",
-      "agreement": null,
+      "agreement": "GCC",
       "bytes": 12273958,
       "sha256": "b78c7a1869590b3347067b6c0194bb0a4f3bbc1a233fe4dfae14d2a942d45d4a"
     },
     {
       "file": "26. 한-GCC FTA full_agreement_Kor.pdf",
-      "agreement": null,
+      "agreement": "GCC",
       "bytes": 6374907,
       "sha256": "83008e2033873c4887bed7bb29688e3ed7e75eab9b220114763db24e4dd2db95"
     },
     {
+      "file": "27. 한-조지아 CEPA 17. KR-GEORGIA CEPA-Exceptions_eng.pdf",
+      "agreement": "조지아",
+      "bytes": 216046,
+      "sha256": "c697577f6df53f80e7d23cf243ed78c9c40bbf558918e7be4d0299ebcbfbfdb1"
+    },
+    {
+      "file": "27. 한-조지아 CEPA 17. KR-GEORGIA CEPA-Exceptions_kor.pdf",
+      "agreement": "조지아",
+      "bytes": 99886,
+      "sha256": "9e9601b3b352cf72f03b1ad58cba9e3dd6c875f68c2a9da4fe78af20831b8573"
+    },
+    {
+      "file": "27. 한-조지아 CEPA 4. KR-GEORGIA CEPA_Customs Procedures and Trade Facilitation_eng.pdf",
+      "agreement": "조지아",
+      "bytes": 209527,
+      "sha256": "1ca1c1d28311940ef91edc62ef808b797bee1feaeb3f8bcf2fc1d310004c875b"
+    },
+    {
+      "file": "27. 한-조지아 CEPA 4. KR-GEORGIA CEPA_Customs Procedures and Trade Facilitation_kor.pdf",
+      "agreement": "조지아",
+      "bytes": 121760,
+      "sha256": "b244800c6e48083639fc2863255bc1cba7735327bc878d3a20a2cf22eef595ac"
+    },
+    {
       "file": "27. 한-조지아 CEPA 9. KR-GEORGIA CEPA-Digital_Trade_eng.pdf",
-      "agreement": null,
+      "agreement": "조지아",
       "bytes": 281633,
       "sha256": "e2b1a83ff54bf9fd27c22174876e9c37ade0553d4f8bf1e6cbc749510e5290fc"
     },
     {
       "file": "27. 한-조지아 CEPA 9. KR-GEORGIA CEPA-Digital_Trade_kor.pdf",
-      "agreement": null,
+      "agreement": "조지아",
       "bytes": 145184,
       "sha256": "5badd6ac66c866f93bedbc87f89d4a014d7dcd9f13efbf409551a20f9ca60b45"
     },
     {
       "file": "28. 한-EU DTA kedta_full_agreement_eng.pdf",
-      "agreement": null,
+      "agreement": "EU DTA",
       "bytes": 286487,
       "sha256": "078a3eefbd7b97bf61bc08b3bf2fd6ec66e9c4123d2a523ee994a3d5aa3b706e"
     },
     {
       "file": "28. 한-EU DTA kedta_full_agreement_kor.pdf",
-      "agreement": null,
+      "agreement": "EU DTA",
       "bytes": 249520,
       "sha256": "3e66276decdbecfcef911b9460820017609da32bc764955e1426df147a4d4706"
     },
     {
+      "file": "29. 한-말레이시아 FTA 04. KR-MY_Customs Procedures and Trade Facilitation_eng.pdf",
+      "agreement": "말레이시아",
+      "bytes": 267740,
+      "sha256": "49e9eec88b33fa5f6efc9c50fd1fd22de7e008c9e82594a7f106c6abc64c30cc"
+    },
+    {
+      "file": "29. 한-말레이시아 FTA 04. KR-MY_Customs Procedures and Trade Facilitation_kor.pdf",
+      "agreement": "말레이시아",
+      "bytes": 178555,
+      "sha256": "606866d4f220dc359df5f1fc83afdf871cd4efefb747d2b4efdfb493c6d9a5f5"
+    },
+    {
       "file": "29. 한-말레이시아 FTA 12. KR-MY_Digital Trade_eng.pdf",
-      "agreement": null,
+      "agreement": "말레이시아",
       "bytes": 273348,
       "sha256": "9f7820d39ca0d74a771c43625d38163b5441103ee33e8d236b5d39d9c2435c86"
     },
     {
       "file": "29. 한-말레이시아 FTA 12. KR-MY_Digital Trade_kor.pdf",
-      "agreement": null,
+      "agreement": "말레이시아",
       "bytes": 169094,
       "sha256": "323a25c0a9fa98a506cbbe9736f7b38a898bc1edcc21cf86a639cc3f23a6c8ba"
+    },
+    {
+      "file": "29. 한-말레이시아 FTA 16. KR-MY_General Provisions and Exceptions_eng.pdf",
+      "agreement": "말레이시아",
+      "bytes": 180830,
+      "sha256": "1af49f17516203586a50b60ef98168b677435696000e28677ec8790178cf23ca"
+    },
+    {
+      "file": "29. 한-말레이시아 FTA 16. KR-MY_General Provisions and Exceptions_kor.pdf",
+      "agreement": "말레이시아",
+      "bytes": 102195,
+      "sha256": "ea6a9e43071d64ff8521fb985a1e270c803d2a37301b976d3ffbfd389dce5083"
     },
     {
       "file": "3. 한-EFTA FTA KR-EFTA_Full_Agreement_eng.pdf",
