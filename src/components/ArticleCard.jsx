@@ -94,9 +94,18 @@ export default function ArticleCard({ article, keyword }) {
         </button>
       )}
 
-      {/* 출처 — 화면에는 표시하지 않고 인쇄·PDF에서만 나온다(CSS의 @media print).
-          화면은 원문 비교에 집중시키고(PRD: source는 기록만), 종이는 회의·보고에 돌려 쓰이므로
-          어느 협정문 어디서 온 조항인지 남겨 인용할 수 있게 한다. */}
+      {/* 출처 — 화면에서는 접이식 토글로 제공한다 〔7차〕.
+          화면은 원문 비교에 집중시키되(기본 접힘), 출처·검증 경위가 필요할 때 그 자리에서
+          펼쳐 볼 수 있게 한다. 네이티브 <details>라 상태 관리가 필요 없다. */}
+      {article.source && (
+        <details className="article-source-toggle">
+          <summary>출처</summary>
+          <p className="article-source-text">{article.source}</p>
+        </details>
+      )}
+
+      {/* 출처(인쇄용) — 인쇄·PDF에서는 토글 없이 전문이 항상 나온다(CSS의 @media print).
+          <details>는 접힌 채 인쇄되면 내용이 잘리므로 인쇄용 요소를 따로 둔다. */}
       {article.source && (
         <div className="article-card-source">출처: {article.source}</div>
       )}

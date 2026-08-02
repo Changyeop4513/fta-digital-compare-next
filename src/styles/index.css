@@ -778,10 +778,41 @@ body {
   cursor: not-allowed;
 }
 
-/* 인쇄물 머리글과 조항 출처는 화면에서는 숨긴다 (인쇄에서만 나타난다) */
+/* 인쇄물 머리글과 인쇄용 출처 블록은 화면에서는 숨긴다 (인쇄에서만 나타난다) */
 .print-header,
 .article-card-source {
   display: none;
+}
+
+/* 조항 출처 (화면용 접이식 토글) 〔7차〕
+   기본은 접어 두어 원문 비교에 집중시키고, 필요할 때만 그 자리에서 펼쳐 본다. */
+.article-source-toggle {
+  margin-top: 10px;
+  padding-top: 8px;
+  border-top: 1px dotted var(--border);
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.article-source-toggle summary {
+  cursor: pointer;
+  user-select: none;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.article-source-toggle summary:hover {
+  color: var(--navy);
+}
+
+.article-source-toggle[open] summary {
+  margin-bottom: 4px;
+}
+
+.article-source-text {
+  margin: 0;
+  line-height: 1.55;
+  word-break: break-all; /* 긴 파일명·링크가 칸 폭을 밀어내지 않게 */
 }
 
 /* 인쇄 · PDF 저장 전용 규칙.
@@ -811,8 +842,9 @@ body {
   .topic-bar,
   .control-bar,
   .availability-bar,
-  .more-button {
-    display: none !important;
+  .more-button,
+  .article-source-toggle {
+    display: none !important; /* 화면용 출처 토글은 인쇄에서 숨긴다 — 인쇄는 아래 인쇄용 전문 블록이 담당 */
   }
 
   /* 인쇄 전용 요소를 드러낸다 */
