@@ -192,7 +192,7 @@ PC 넓은 화면 기준, 위에서 아래로 4개 영역이 쌓인다. **① 헤
 App                          (전체를 감싸고 공유 상태를 관리)
 ├─ <header>                  ① 로고 + 제목        ← App 내부 마크업(별도 컴포넌트 아님)
 ├─ <section .control-bar>    ② 컨트롤 바 묶음 (sticky) ← App 내부 마크업
-│  ├─ TopicSelector          · 주제 17개 중 1개 (네이티브 라디오)          〔4차 7개 → 6차 17개〕
+│  ├─ TopicSelector          · 주제 30개 중 1개 (라디오 + 목록 스크롤)  〔4차 7 → 6차 17 → 8차 30〕
 │  ├─ AgreementSelector      · 선택 칩 + "＋ 협정 추가" 버튼          〔v2.0 개편〕
 │  │  └─ AgreementPicker     · 추가 패널: 이름 검색 + 있음만 보기 + 목록  〔v2.0 신규〕
 │  ├─ SearchBar              · 원문 키워드 검색창
