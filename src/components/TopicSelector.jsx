@@ -18,6 +18,8 @@ export const TOPICS = [
   { key: 'e_invoicing', label: 'E-invoicing(전자송장)' },
   { key: 'e_authentication', label: 'E-authentication(전자인증·전자서명)' },
   { key: 'domestic_framework', label: 'Domestic framework(국내 전자거래 체계)' },
+  { key: 'e_contracts', label: 'E-contracts(전자 계약)' },
+  { key: 'prior_authorisation', label: 'Prior authorisation(사전 승인 금지)' },
   { key: 'electronic_payment', label: 'Electronic payments(전자지급)' },
   { key: 'fintech', label: 'FinTech(핀테크 협력)' },
   { key: 'cross_border_data', label: 'Data flows(국경 간 데이터 이전)' },
@@ -31,6 +33,7 @@ export const TOPICS = [
   { key: 'online_safety', label: 'Online safety(온라인 안전·보안)' },
   { key: 'internet_access', label: 'Internet access(인터넷 접근·이용)' },
   { key: 'open_gov_data', label: 'Open gov data(정부 데이터 공개)' },
+  { key: 'digital_government', label: 'Digital government(디지털 정부)' },
   { key: 'data_innovation', label: 'Data innovation(데이터 혁신)' },
   { key: 'digital_identity', label: 'Digital identity(디지털 신원)' },
   { key: 'ai', label: 'AI(인공지능)' },
@@ -52,8 +55,11 @@ export const TOPICS = [
 //    이라는 초기 범위 규칙을 사용자 결정으로 해제하고 디지털 협정 전체를 다룬다(PRD v5.0).
 //  - 〔8차〕 13개 추가 — **디지털 무역/전자상거래 장의 독립 조문만** 대상이다.
 //    별도 「경쟁 장」(중국·베트남·호주 등 7개 협정)은 competition 대상이 아니다(디지털 장 내 경쟁 조문만).
-//    EU DTA 제8조(사전 승인 금지)·제9조(전자 계약)·UAE 제9.16조(디지털 정부)는 13주제 어디에도
-//    맞지 않아 미수록 — 새 주제로 삼을지는 사용자 결정 사항.
+//  - 〔9차〕 8차에서 미수록으로 남겼던 특수 조문 3개를 **사용자 결정으로 주제화**했다 —
+//    e_contracts(EU DTA 제9조) · prior_authorisation(EU DTA 제8조) · digital_government(UAE 9.16 · GCC 9.13).
+//    보유 협정이 1~2개뿐이라 대부분 "없음"으로 보이는 것이 정상이다.
+//    말레이시아 제12.22조(협력)의 "사. 디지털 정부"는 **협력 대화 주제 목록의 한 항목**이라
+//    간접 규정 엄격 판정 기준상 "없음"이다(실질 의무 없음).
 
 // props:
 //  - selectedTopic: 현재 선택된 주제 key
