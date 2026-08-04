@@ -138,15 +138,19 @@ export default function App() {
       </header>
 
       <main className="app-main">
-        {/* ②-1 주제 바 — 이것만 화면 상단에 고정한다.
-            주제는 읽는 내내 "지금 무엇을 보고 있는지"를 알려주고 자주 바꾸는 것이라 고정하지만,
-            협정 선택·검색·인쇄는 한 번 정하고 나면 계속 볼 필요가 없어 함께 고정하면
-            조항 읽을 자리만 좁아진다. (첨부 화면에서 비교 뷰가 절반밖에 안 되던 원인) */}
-        <section className="topic-bar">
-          <TopicSelector selectedTopic={selectedTopic} onSelect={setSelectedTopic} />
-        </section>
+        {/* 〔10차〕 주제를 **왼쪽 세로 목록**으로 옮겼다 (사용자 제안 — 관세법령정보포털 좌측 메뉴 방식).
+            주제가 33개가 되면서 가로 알약 바는 여러 줄로 늘어 화면 위쪽 24%를 먹고
+            그 안에서 또 스크롤해야 했다. 세로 목록은 한 줄에 하나씩이라 33개가 자연스럽게 들어가고,
+            비교 뷰는 세로 공간을 100% 쓸 수 있다. 좁아지는 가로 폭은 본문 최대 너비를 넓혀 상쇄한다. */}
+        <div className="app-layout">
+          {/* ②-1 주제 사이드바 — 화면 왼쪽에 고정(sticky). 목록이 길면 사이드바 안에서만 스크롤된다. */}
+          <aside className="topic-sidebar">
+            <TopicSelector selectedTopic={selectedTopic} onSelect={setSelectedTopic} />
+          </aside>
 
-        {/* ②-2 컨트롤 바 — 협정 선택 + 검색 + 인쇄. 스크롤하면 위로 지나간다. */}
+          {/* ②-2 오른쪽 본문 — 컨트롤 바 · 조항 유무 · 비교 뷰 */}
+          <div className="app-content">
+        {/* 컨트롤 바 — 협정 선택 + 검색 + 인쇄. 스크롤하면 위로 지나간다. */}
         <section className="control-bar">
           <AgreementSelector
             availability={availability}
@@ -196,6 +200,8 @@ export default function App() {
             keyword={keyword}
           />
         )}
+          </div>
+        </div>
       </main>
     </div>
   )

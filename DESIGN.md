@@ -192,7 +192,7 @@ PC 넓은 화면 기준, 위에서 아래로 4개 영역이 쌓인다. **① 헤
 App                          (전체를 감싸고 공유 상태를 관리)
 ├─ <header>                  ① 로고 + 제목        ← App 내부 마크업(별도 컴포넌트 아님)
 ├─ <section .control-bar>    ② 컨트롤 바 묶음 (sticky) ← App 내부 마크업
-│  ├─ TopicSelector          · 주제 33개 중 1개 (라디오 + 목록 스크롤)  〔6차 17 → 8차 30 → 9차 33〕
+│  ├─ TopicSelector          · 주제 33개 중 1개 (라디오 세로 목록)  〔10차: 좌측 사이드바로 이동〕
 │  ├─ AgreementSelector      · 선택 칩 + "＋ 협정 추가" 버튼          〔v2.0 개편〕
 │  │  └─ AgreementPicker     · 추가 패널: 이름 검색 + 있음만 보기 + 목록  〔v2.0 신규〕
 │  ├─ SearchBar              · 원문 키워드 검색창
@@ -205,9 +205,11 @@ App                          (전체를 감싸고 공유 상태를 관리)
 └─ EmptyState                화면 전체 예외 안내 (협정 0개 / 원문 검색 0건)
 ```
 
-> **〔4차 변경〕 상단 고정은 「주제 바」 하나뿐이다.** 주제가 7개로 늘자 컨트롤 바 전체를 고정하니 **조항 읽을 자리가 화면 절반밖에 남지 않았다.** 그래서 `App.jsx` 안에서 **`<section className="topic-bar">`(sticky)** 와 **`<section className="control-bar">`(일반)** 두 카드로 나눴다. 협정 선택·검색·인쇄는 스크롤에 딸려 올라간다.
+> **〔10차 개정 · 사용자 제안〕 주제는 화면 왼쪽 세로 사이드바다.** 주제가 33개가 되자 가로 알약 바가 화면 위쪽 24%를 먹고 그 안에서 또 스크롤해야 했다. 관세법령정보포털 좌측 메뉴처럼 **`<aside className="topic-sidebar">`(sticky) + `<div className="app-content">`** 2단 격자(`.app-layout`, 236px / 1fr)로 바꿔 조항 영역이 **세로 100%**를 쓰게 했다. 본문 최대 너비는 1280 → **1520px**로 넓혀 가로 손실을 상쇄했다(협정 4칸 폭 289px 유지). 인쇄에서는 사이드바를 숨기고 격자를 풀어 종이 폭을 다 쓴다.
+>
+> 〔4~9차 경위〕 그전에는 **`<section className="topic-bar">`(sticky)** 와 **`<section className="control-bar">`(일반)** 두 카드로 나눠 **주제 바만** 상단에 고정했다. 협정 선택·검색·인쇄는 그때도 지금도 스크롤에 딸려 올라간다.
 > - 한 카드 안에서 자식만 sticky로 만들면 **부모가 화면을 벗어날 때 같이 사라지므로** 카드 분리가 필요했다.
-> - 결과: 고정 영역 **310px → 105px(15%)**, 조항 영역 **85%**. 주제를 더 추가하더라도 **조항 영역이 70% 아래로 내려가지 않게** 유지할 것.
+> - 결과: 고정 영역 310px → 105px(4차) → **0px(10차, 좌측 사이드바로 이동)**, 조항 영역 **세로 100%**. 주제를 더 추가해도 세로 목록이 사이드바 안에서 스크롤되므로 이 구조는 그대로 견딘다.
 >
 > **〔v2.1 정정〕 헤더와 컨트롤 바는 별도 컴포넌트가 아니다.** `App.jsx` 안의 `<header>`·`<section className="control-bar">` 마크업이다. 상태를 갖지 않고 자리만 잡는 껍데기라 컴포넌트로 분리할 이유가 없었다. **실제 컴포넌트 파일은 11개** — `TopicSelector` · `AgreementSelector` · `AgreementPicker` · `SearchBar` · **`PrintButton`** · **`PrintHeader`** · `AvailabilityBar` · `ComparisonView` · `AgreementColumn` · `ArticleCard` · `EmptyState`. (뒤의 두 개가 3차에서 추가됐다)
 

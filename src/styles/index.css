@@ -103,13 +103,34 @@ body {
 
 /* --- 본문 (PC 넓은 화면 중앙 정렬) --- */
 .app-main {
-  max-width: 1280px;
+  /* 〔10차〕 주제 목록이 왼쪽 세로 열로 빠지면서 본문이 그만큼 좁아진다.
+     비교 뷰가 최대 4칸이라 폭이 곧 가독성이므로, 최대 너비를 1280 → 1520px로 넓혀 상쇄한다. */
+  max-width: 1520px;
   margin: 0 auto;
   padding: 24px 32px 48px;
 }
 
-/* --- 공통 섹션 카드 (주제 바 / 컨트롤 바 / 협정별 조항 유무) --- */
-.topic-bar,
+/* 〔10차〕 좌: 주제 사이드바 / 우: 본문. (사용자 제안 — 관세법령정보포털 좌측 메뉴 방식)
+   align-items: start 여야 사이드바가 본문 높이만큼 늘어나지 않고 sticky 가 동작한다. */
+.app-layout {
+  display: grid;
+  grid-template-columns: 236px minmax(0, 1fr);
+  gap: 18px;
+  align-items: start;
+}
+
+/* 주제 사이드바 — 화면 왼쪽에 고정하고, 목록이 길면 사이드바 안에서만 스크롤한다.
+   세로 목록이라 33개가 한 줄에 하나씩 들어가고, 오른쪽 비교 뷰는 세로 공간을 100% 쓴다. */
+.topic-sidebar {
+  position: sticky;
+  top: 18px;
+  max-height: calc(100vh - 36px);
+  overflow-y: auto;
+  padding: 14px 12px;
+}
+
+/* --- 공통 섹션 카드 (주제 사이드바 / 컨트롤 바 / 협정별 조항 유무) --- */
+.topic-sidebar,
 .control-bar,
 .availability-bar {
   background-color: var(--card-bg);
@@ -120,32 +141,41 @@ body {
   box-shadow: 0 1px 2px rgba(26, 42, 74, 0.04);
 }
 
-/* 스크롤 중 화면 상단에 고정하는 것은 **주제 바 하나뿐**이다.
-   주제는 읽는 내내 "지금 무엇을 보고 있는지"를 알려주고 자주 바꾸는 것이라 고정하지만,
-   협정 선택·검색·인쇄까지 고정하면 조항을 읽을 자리가 절반으로 줄어든다.
-   그것들은 한 번 정하면 계속 볼 필요가 없으므로 위로 스크롤되어 지나가게 둔다. */
-.topic-bar {
-  position: sticky;
-  top: 0;
-  z-index: 20;
-  /* 고정되는 만큼 최대한 납작하게 — 아래 비교 뷰에 자리를 내준다 */
-  padding: 10px 22px 12px;
-  margin-bottom: 14px;
-  /* 아래 본문이 밑으로 지나갈 때 경계가 또렷하도록 그림자를 조금 강조 */
-  box-shadow: 0 4px 12px rgba(26, 42, 74, 0.1);
+/* 사이드바 안의 라벨("주제 선택")은 목록 머리글이므로 위에 한 줄로 둔다 */
+.topic-sidebar .control-label {
+  padding: 0 6px 8px;
+  border-bottom: 1px solid var(--border-soft);
+  margin-bottom: 8px;
 }
 
-/* 주제 바 안에서는 라벨을 같은 줄에 두어 한 줄을 아낀다 */
-.topic-bar .topic-selector {
-  display: flex;
-  align-items: baseline;
-  gap: 12px;
-}
+/* 창이 좁으면(노트북 등) 사이드바가 비교 뷰를 압박한다 — 이때만 위쪽 가로 목록으로 되돌린다.
+   PC 넓은 화면이 기본이고 이것은 안전장치다(모바일 최적화는 여전히 범위 밖). */
+@media (max-width: 1180px) {
+  .app-layout {
+    display: block;
+  }
 
-.topic-bar .control-label {
-  display: inline;
-  flex: 0 0 auto;
-  margin-bottom: 0;
+  .topic-sidebar {
+    position: static;
+    max-height: none;
+    margin-bottom: 18px;
+    padding: 14px 18px;
+  }
+
+  .topic-sidebar .topic-radios {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 6px;
+    max-height: 18vh;
+    overflow-y: auto;
+  }
+
+  .topic-sidebar .topic-radio {
+    border-color: #b7c0dc;
+    background-color: #ffffff;
+    border-radius: 16px;
+    padding: 6px 12px;
+  }
 }
 
 .control-label {
@@ -162,44 +192,39 @@ body {
   color: var(--faint);
 }
 
-/* --- 주제 선택 --- */
+/* --- 주제 선택 〔10차: 가로 알약 → 세로 목록〕 ---
+   주제 33개를 한 줄에 하나씩 세로로 쌓는다. 사이드바 자체가 스크롤되므로
+   목록에는 별도 최대 높이를 두지 않는다(8차의 max-height: 21vh 는 제거). */
 .topic-radios {
   display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-  /* 〔8차〕 주제가 30개로 늘어 알약이 다섯 줄을 넘긴다. 고정 바가 화면 절반을 먹지 않도록
-     주제 목록 자체에 최대 높이를 두고 그 안에서만 스크롤시킨다.
-     (CLAUDE.md 규칙: 주제를 추가해도 조항 영역이 70% 아래로 내려가지 않게 유지) */
-  max-height: 21vh;
-  overflow-y: auto;
-  /* 스크롤 막대가 알약을 가리지 않도록 살짝 여백 */
-  padding-right: 4px;
+  flex-direction: column;
+  gap: 2px;
 }
 
-/* 라디오 라벨을 알약(pill) 버튼 모양으로 스타일링 — 외형은 기존 버튼과 동일하게 유지 */
+/* 목록 항목 — 사이드바 폭을 꽉 채우는 왼쪽 정렬 행(알약이 아니다) */
 .topic-radio {
   position: relative; /* 아래 투명 라디오(inset:0)의 기준점 */
-  display: inline-flex;
-  align-items: center;
-  border: 1px solid #b7c0dc;
-  background-color: #ffffff;
+  display: block;
+  border: 1px solid transparent;
+  background-color: transparent;
   color: var(--navy);
-  /* 주제가 7개라 알약이 두 줄이 된다. 여백을 조금 줄여 sticky 바 높이를 아낀다. */
-  padding: 7px 14px;
-  border-radius: 20px;
+  padding: 8px 10px;
+  border-radius: 6px;
   cursor: pointer;
-  font-size: 13.5px;
+  font-size: 13px;
+  line-height: 1.4;
   transition: all 0.12s ease;
 }
 
 .topic-radio:hover {
-  border-color: var(--navy);
+  background-color: #eef1f8;
 }
 
 .topic-radio.is-selected {
   background-color: var(--navy);
   color: #ffffff;
   border-color: var(--navy);
+  font-weight: 600;
 }
 
 /* 실제 라디오 동그라미는 숨기되(opacity:0), 알약 전체를 덮어 클릭 영역이 되게 한다.
@@ -846,12 +871,18 @@ body {
   /* 화면 전용 요소는 감춘다 — 종이에서 누를 수 없는 것들(컨트롤·버튼)과
      화면 안내용 요소(로고 헤더·조항 유무 바) */
   .app-header,
-  .topic-bar,
+  .topic-sidebar,
   .control-bar,
   .availability-bar,
   .more-button,
   .article-source-toggle {
     display: none !important; /* 화면용 출처 토글은 인쇄에서 숨긴다 — 인쇄는 아래 인쇄용 전문 블록이 담당 */
+  }
+
+  /* 〔10차〕 사이드바를 숨긴 자리를 본문이 차지하도록 2단 격자를 푼다.
+     grid 인 채로 두면 왼쪽 236px 열이 빈 여백으로 남아 종이 가로폭을 낭비한다. */
+  .app-layout {
+    display: block;
   }
 
   /* 인쇄 전용 요소를 드러낸다 */
