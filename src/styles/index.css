@@ -821,13 +821,19 @@ body {
 
 /* 검색창 + 인쇄 버튼을 한 줄에. 검색창이 남는 폭을 다 쓰고 버튼은 오른쪽 끝에 붙는다.
    (주제가 7개로 늘어 컨트롤 바가 길어졌으므로 한 줄이라도 아낀다) */
-/* 〔11차〕 검색이 헤더로 올라가 이 줄에는 인쇄 버튼만 남았다 — 오른쪽 끝 정렬 */
-.control-row {
+/* 〔13차〕 인쇄 버튼을 협정 선택과 **같은 줄** 오른쪽 끝에 둔다(사용자 지시).
+   11차에 검색이 헤더로 올라간 뒤 버튼만 남아 한 줄을 더 쓰고 있었다 — 그 줄을 없애
+   컨트롤 바 높이를 줄인다. 칩 줄과 버튼의 밑선을 맞추려고 flex-end 로 정렬한다. */
+.control-bar {
   display: flex;
   align-items: flex-end;
-  justify-content: flex-end;
   gap: 16px;
-  margin-top: 14px;
+}
+
+.control-bar .agreement-selector {
+  flex: 1 1 auto;
+  min-width: 0;
+  margin-top: 0; /* 카드 안에서 홀로 쓰이므로 위 여백이 필요 없다 */
 }
 
 .print-action {

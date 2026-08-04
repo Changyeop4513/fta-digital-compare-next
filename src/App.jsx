@@ -155,19 +155,17 @@ export default function App() {
 
           {/* ②-2 오른쪽 본문 — 컨트롤 바 · 조항 유무 · 비교 뷰 */}
           <div className="app-content">
-        {/* 컨트롤 바 — 협정 선택 + 검색 + 인쇄. 스크롤하면 위로 지나간다. */}
+        {/* 컨트롤 바 — 협정 선택 + 인쇄. 스크롤하면 위로 지나간다.
+            〔13차〕 인쇄 버튼을 협정 선택과 **같은 줄** 오른쪽 끝에 둔다(사용자 지시).
+            검색이 헤더로 올라간 뒤(11차) 버튼이 혼자 한 줄을 차지해 카드가 불필요하게 높았다. */}
         <section className="control-bar">
           <AgreementSelector
             availability={availability}
             selectedAgreements={selectedAgreements}
             onToggle={toggleAgreement}
           />
-          {/* 〔11차〕 검색이 헤더로 올라가면서 이 줄에는 인쇄 버튼만 남았다.
-              협정 선택과 같은 카드 안에서 오른쪽 끝에 둔다. */}
-          <div className="control-row">
-            {/* ⑤ 내보내기 — 현재 비교 결과를 인쇄하거나 PDF로 저장 */}
-            <PrintButton disabled={nothingToPrint} onPrint={handlePrint} />
-          </div>
+          {/* ⑤ 내보내기 — 현재 비교 결과를 인쇄하거나 PDF로 저장 */}
+          <PrintButton disabled={nothingToPrint} onPrint={handlePrint} />
         </section>
 
         {/* 인쇄물 머리글 — 화면에서는 숨겨져 있고 인쇄에서만 나온다.
