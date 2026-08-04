@@ -10,6 +10,7 @@ import PrintHeader from './components/PrintHeader.jsx'
 import AvailabilityBar from './components/AvailabilityBar.jsx'
 import ComparisonView from './components/ComparisonView.jsx'
 import EmptyState from './components/EmptyState.jsx'
+import Disclaimer from './components/Disclaimer.jsx'
 import articles from './data/articles.json'
 import { AGREEMENTS, MAX_SELECTION } from './constants.js'
 
@@ -133,9 +134,12 @@ export default function App() {
             {/* 〔14차〕 부제 교체 — 옛 문구("재정경제부 소관 디지털 통상 주제를 …")는 6차에
                 범위를 디지털 협정 전체로 넓히면서 사실과 어긋나게 됐다(주제가 재경부 소관을 넘어선다).
                 숫자는 상수에서 뽑아 쓴다 — 협정·주제를 늘려도 부제가 낡지 않는다. */}
+            {/* 〔15차〕 "원문 그대로"를 뺐다 — 편집 방침(요약·수정 안 함)을 뜻한 말이지만
+                아무 단서 없이 놓이면 **정확성 보증처럼** 읽힌다. 정확성에 관한 설명은
+                화면 하단·인쇄물의 참고용 안내(Disclaimer)가 맡는다. */}
             <p className="app-subtitle">
-              협정 {AGREEMENTS.length}개 × 주제 {TOPICS.length}개 — 디지털 통상 조항을 원문
-              그대로 나란히 비교합니다.
+              협정 {AGREEMENTS.length}개 × 주제 {TOPICS.length}개 — 디지털 통상 조항을 나란히
+              비교합니다.
             </p>
           </div>
 
@@ -209,6 +213,14 @@ export default function App() {
           </div>
         </div>
       </main>
+
+      {/* 〔15차〕 참고용 안내 — 화면 맨 아래에 항상 둔다.
+          인쇄물에는 같은 문구가 머리글(PrintHeader)에 들어가므로 이 푸터는 인쇄에서 숨긴다. */}
+      <footer className="app-footer">
+        <div className="app-footer-inner">
+          <Disclaimer />
+        </div>
+      </footer>
     </div>
   )
 }

@@ -3,6 +3,7 @@
 // "무엇을 기준으로 뽑은 표인지"를 알 수 없다. 회의·보고에 돌려 쓰이는 문서이므로
 // 조건을 문서 안에 남겨 둔다. (원문은 손대지 않고 조건만 적는다)
 import { AGREEMENT_FULL_NAMES } from '../constants.js'
+import Disclaimer from './Disclaimer.jsx'
 
 // props:
 //  - topicLabel: 현재 주제의 화면 표기 (예: '관세(Customs Duties)')
@@ -38,10 +39,11 @@ export default function PrintHeader({ topicLabel, selectedAgreements, keyword, p
         <dd>{printedAt}</dd>
       </dl>
 
-      <p className="print-header-note">
-        조항 원문은 정부 공식 협정문에서 그대로 옮긴 것이며 요약·수정하지 않았습니다.
-        각 조항의 기준일과 출처는 조항마다 함께 적혀 있습니다.
-      </p>
+      {/* 〔15차〕 참고용 안내를 인쇄물 첫 장에 싣는다 — 종이·PDF는 회의·보고로 돌아다니고
+          그때는 화면의 안내가 보이지 않는다. 화면 푸터와 같은 컴포넌트를 써서 문구가 어긋나지 않게 한다. */}
+      <div className="print-header-note">
+        <Disclaimer />
+      </div>
     </div>
   )
 }
