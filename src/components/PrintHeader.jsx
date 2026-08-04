@@ -5,7 +5,7 @@
 import { AGREEMENT_FULL_NAMES } from '../constants.js'
 
 // props:
-//  - topicLabel: 현재 주제의 화면 표기 (예: 'Customs Duties(관세)')
+//  - topicLabel: 현재 주제의 화면 표기 (예: '관세(Customs Duties)')
 //  - selectedAgreements: 고른 협정(짧은 이름) 배열 — 고른 순서 = 비교 뷰 좌우 순서
 //  - keyword: 원문 검색어 (없으면 표시하지 않는다)
 //  - printedAt: 출력 시점 문자열 (App에서 인쇄 직전에 만들어 내려준다)
