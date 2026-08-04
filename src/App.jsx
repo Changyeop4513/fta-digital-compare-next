@@ -134,6 +134,11 @@ export default function App() {
               재정경제부 소관 디지털 통상 주제를 협정별로 나란히 비교합니다.
             </p>
           </div>
+
+          {/* 〔11차〕 원문 검색을 헤더 오른쪽으로 옮겼다 (사용자 제안 — 관세법령정보포털 상단 검색 방식).
+              검색은 "지금 보는 화면에서 단어 찾기"라 주제·협정 선택보다 먼저 눈에 띄어야 하고,
+              컨트롤 바 안에 있을 때는 협정 칩 아래에 묻혀 있었다. */}
+          <SearchBar keyword={keyword} onChange={setKeyword} />
         </div>
       </header>
 
@@ -157,10 +162,9 @@ export default function App() {
             selectedAgreements={selectedAgreements}
             onToggle={toggleAgreement}
           />
-          {/* 검색창과 인쇄 버튼을 한 줄에 둔다 — 주제가 7개가 되면서 컨트롤 바가 길어져,
-              인쇄 버튼이 혼자 한 줄을 쓰면 sticky 바가 화면 절반을 넘는다. */}
+          {/* 〔11차〕 검색이 헤더로 올라가면서 이 줄에는 인쇄 버튼만 남았다.
+              협정 선택과 같은 카드 안에서 오른쪽 끝에 둔다. */}
           <div className="control-row">
-            <SearchBar keyword={keyword} onChange={setKeyword} />
             {/* ⑤ 내보내기 — 현재 비교 결과를 인쇄하거나 PDF로 저장 */}
             <PrintButton disabled={nothingToPrint} onPrint={handlePrint} />
           </div>
